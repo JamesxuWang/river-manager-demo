@@ -1,0 +1,300 @@
+<div class="wrap">
+    <ul class="layui-nav river-manager-title" lay-filter="river-manager-nav">
+      <li class="layui-nav-item layui-this"><a href="">河湖管理</a></li>
+      <!-- <li class="layui-nav-item"><a href="">产品</a></li> -->
+    </ul>
+    <div class="river-manager-search">
+        <div class="layui-row">
+          <div class="layui-col-md6">
+            <input type="text" name="YHDMC"  placeholder="请输入" autocomplete="off" class="layui-input">
+          </div>
+          <div class="layui-col-md6" style="text-align: right;">
+              <button class="layui-btn layui-btn-theme" lay-submit="" lay-filter="river-search-bt">搜索</button> 
+              <button class="layui-btn river-add-bt"><em class="layui-icon">&#xe654;</em></button>
+          </div>
+        </div>  
+    </div>
+    <div class="river-manager-results" style="margin-top: 5px;">
+        <div class="river-side-scroll">
+            <ul>
+              <li class="layui-side-li">
+                    <div class="panel panel-default panel-active">
+                        <div class="panel-heading layui-row">
+                            <span class="layui-col-md7 layui-elip"><span class="layui-badge layui-circle">1</span>石井河</span>
+                            <div class="layui-col-md5">
+                                <button class="layui-btn layui-btn-xs"><em class="layui-icon">&#xe642;</em></button>
+                                <button class="layui-btn layui-btn-xs"><em class="layui-icon">&#xe640;</em></button>
+                                <button class="layui-btn layui-btn-xs"><em class="layui-icon">&#xe640;</em></button>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            上呗河流 ：松花江上
+                            <hr>
+                            河流长度 ：1041KM
+                        </div>
+                    </div>
+                </li>
+                <li class="layui-side-li">
+                    <div class="panel panel-default panel-active">
+                        <div class="panel-heading layui-row">
+                            <span class="layui-col-md7 layui-elip"><span class="layui-badge layui-circle">2</span>增埗河</span>
+                            <div class="layui-col-md5">
+                                <button class="layui-btn layui-btn-xs"><em class="layui-icon">&#xe642;</em></button>
+                                <button class="layui-btn layui-btn-xs"><em class="layui-icon">&#xe640;</em></button>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            上呗河流 ：松花江上
+                            <hr>
+                            河流长度 ：1041KM
+                        </div>
+                    </div>
+                </li>
+                <li class="layui-side-li">
+                    <div class="panel panel-default panel-active">
+                        <div class="panel-heading layui-row">
+                            <span class="layui-col-md7 layui-elip"><span class="layui-badge layui-circle">3</span>西航道支线</span>
+                            <div class="layui-col-md5">
+                                <button class="layui-btn layui-btn-xs"><em class="layui-icon">&#xe642;</em></button>
+                                <button class="layui-btn layui-btn-xs"><em class="layui-icon">&#xe640;</em></button>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            上呗河流 ：松花江上
+                            <hr>
+                            河流长度 ：1041KM
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="layui-page" id="layui-river-page"></div>
+    </div>                    
+</div>                
+<div class="river-add hide">
+    <!-- <button class="layui-btn layui-btn-primary layui-btn-sm"><em class="layui-icon">&#xe65a;</em></button> -->
+    <div class="river-add-content" style="
+            background: #fff;
+            padding: 4px 5px;
+            border-radius: 3px;
+        ">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+          <legend>河湖点编辑</legend>
+        </fieldset>
+        <form class="layui-form river-add-form" style="
+              border: 1px solid #120d58;
+              padding: 20px 5px;
+              border-radius: 3px;
+          ">
+          <div class="layui-form-item">
+            <label class="layui-form-label">河湖点名称</label>
+            <div class="layui-input-block">
+              <input type="text" name="" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">河长</label>
+            <div class="layui-input-block">
+              <input type="text" name="" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">联系电话</label>
+            <div class="layui-input-block">
+              <input type="text" name="" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-block">
+              <input type="text" name="" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">所属区域</label>
+            <div class="layui-input-block">
+              <select name="ssqy" lay-filter="ssqy">
+                <option value="0" selected>越秀区</option>
+                <option value="1">天河区</option>
+              </select>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">河湖点等级</label>
+            <div class="layui-input-block">
+              <input type="radio" name="dzgrade" value="1" title="等级一" checked="">
+              <input type="radio" name="dzgrade" value="2" title="等级二">
+              <input type="radio" name="dzgrade" value="3" title="等级三">
+            </div>
+          </div>
+          <div class="layui-form-item" style="text-align: center;">
+            <div class="layui-row">
+                <div class="layui-col-md8" style="text-align: right;height: 50px;">
+                    <div class="span-x">
+                        当前X坐标:
+                        <input type="text" class="layui-input-x" value="112.33368"></div>  
+                    <div class="span-y">
+                        当前X坐标:
+                        <input type="text" class="layui-input-x" value="36.23783"></div>
+                </div>
+                <div class="layui-col-md4" style="text-align: left;height: 50px;line-height: 50px">
+                    <em class="layui-icon river-manager-draw" type='POINT' style="font-size: 30px; color: #1E9FFF;cursor: pointer;">&#xe617;</em>
+                </div>
+            </div>
+          </div>
+          <div class="layui-form-item" style="text-align: center;">
+              <button class="layui-btn river-add-back">返回</button>
+              <button class="layui-btn layui-btn-primary" type="reset">重置</button>
+              <button class="layui-btn layui-btn-danger" lay-submit="" lay-filter="river-add-bt">提交</button> 
+          </div>
+        </form>
+    </div>  
+</div>
+<style>
+  /*地灾结果*/
+.river-manager{
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+}
+.river-manager .wrap{
+    position: relative;
+    height: 100%;
+}
+.river-manager .wrap .river-manager-title{
+    /*font-size: 23px;*/
+    background-color: #ffffff;
+    box-shadow: 0px 3px 0px #f0f0f0;
+}
+.river-manager-title .layui-nav-item a {
+    font-size: 23px;
+    color: #666;
+}
+.river-manager-title .layui-nav-item a:hover,.river-manager-title .layui-nav-item .layui-this a {
+    color: #6665e5;
+}
+.river-manager .wrap .river-manager-results{
+    position: absolute;
+    top: 120px;
+    bottom: 3px;
+    width: 100%;
+}
+.river-manager .river-manager-results .river-side-scroll{
+    position: absolute;
+    top: 0;
+    bottom: 40px;
+    width: 100%;
+    overflow-y: auto; 
+    overflow-x: hidden;
+}
+.river-manager-results .layui-side-li {
+    padding-right: 3px;
+}
+.river-manager-results .panel {
+    color: #333;
+    margin-bottom: 5px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+.river-manager .river-manager-results .panel-heading {
+    padding: 10px 8px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.river-manager .river-manager-results .panel-body {
+    padding: 15px;
+}.river-manager-results .river-side-scroll .panel-default {
+    border-color: #ddd;
+}
+.river-manager-results .river-side-scroll .panel-active{
+    border-color: #6665e5;
+}
+.river-manager .panel-default .panel-heading {
+    background-color: #f5f5f5;
+    border-color: #ddd;
+}
+.river-manager .panel-active .panel-heading {
+    background-color: #6665e5;
+    border-color: #ddd;    
+    color: #fff;
+}
+.river-manager .panel-heading .layui-badge{    
+    margin-right: 6px;
+}
+.river-manager .river-manager-results .layui-page{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.river-manager .layui-page .layui-laypage{
+    margin:3px 0 0 0;
+}
+.river-manager .layui-input-x{
+    display: inline-block;
+    width: 40%;
+    border: 0;
+    margin-bottom: 10px;
+}
+.river-manager-search{
+    background: #fff;
+    border-radius: 3px;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+}
+.river-manager-search .layui-field-title {
+    margin:0 0 10px 0; 
+    /*border-width: 1px 0 0;*/
+    border-width: 0;
+    position: relative;
+}
+.river-manager-search .layui-form-item{
+    margin-bottom: 5px;
+}
+.river-manager-search .layui-form-label{
+    width: 75px;   
+    padding: 9px 10px;
+}
+.river-manager-search .layui-input-block {
+    margin-left: 100px;
+}
+.river-manager-search .layui-form-checked span, .layui-form-checked:hover span {
+    background-color: #6665e5;
+}
+.river-manager-search .layui-form-checked i, .layui-form-checked:hover i {
+    color: #6665e5;
+}
+.river-manager-search .layui-form-checked, .layui-form-checked:hover {
+    border-color: #6665e5;
+}
+.river-manager-search .layui-form-checkbox{
+    margin-right: 0px;
+    padding-right: 25px;
+}
+.river-manager-search .river-manager-draw{
+    display: inline-block;
+    height: 38px;
+    width: 38px;
+    line-height: 38px;
+    background: #f0f0f0;
+    text-align: center;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.river-manager-search .river-manager-draw.layui-this{
+    background-color: #6665e5;
+    color: #fff;
+}
+.river-manager-search .river-manager-draw.layui-this .layui-ico{
+    color: #fff;
+}
+.river-manager-search .river-manager-draw .layui-icon{
+    font-size: 24px;
+}
+</style>

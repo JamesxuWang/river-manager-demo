@@ -1,0 +1,93 @@
+<div class="workp-wrap">
+	<div class="wrap-process">
+		<div class="workp-wrap-box">
+	        <label for="">督察员a</label>
+	        <div class="layui-progress layui-progress-big" lay-showPercent="true" lay-filter="demo">
+	          <div class="layui-progress-bar layui-bg-red" lay-percent="27%"></div>
+	        </div>
+	    </div>
+	    <div class="workp-wrap-box"  style="margin-top:10px">
+	        <label for="">巡查员a</label>
+	        <div class="layui-progress layui-progress-big" lay-showPercent="true" lay-filter="demo1">
+	          <div class="layui-progress-bar" lay-percent="70%"></div>
+	        </div> 
+	    </div>
+	    <div class="workp-wrap-box"  style="margin-top:10px">
+	        <label for="">保洁员a</label>
+	        <div class="layui-progress layui-progress-big" lay-showPercent="true" lay-filter="demo1">
+	          <div class="layui-progress-bar" lay-percent="70%"></div>
+	        </div> 
+	    </div>
+	    <div class="workp-wrap-box"  style="margin-top:10px">
+	        <button class="layui-btn layui-btn-danger workp-add-show" lay-filter="workp-add-show">添加成员</button> 
+	    </div>
+    </div>
+	<div class="workp-add hide">
+	    <!-- <button class="layui-btn layui-btn-primary layui-btn-sm"><em class="layui-icon">&#xe65a;</em></button> -->
+	    <div class="workp-add-content" style="
+	            background: #fff;
+	            padding: 4px 5px;
+	            border-radius: 3px;
+	        ">
+	        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+	          <legend>添加成员</legend>
+	        </fieldset>
+	        <form class="layui-form workp-add-form" style="
+	              border: 1px solid #120d58;
+	              padding: 20px 5px;
+	              border-radius: 3px;
+	          ">
+	          <div class="layui-form-item">
+	            <label class="layui-form-label">成员名称</label>
+	            <div class="layui-input-block">
+	              <input type="text" name="" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+	            </div>
+	          </div>
+	          <div class="layui-form-item">
+	            <label class="layui-form-label">联系电话</label>
+	            <div class="layui-input-block">
+	              <input type="text" name="" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+	            </div>
+	          </div>
+	          <div class="layui-form-item">
+	            <label class="layui-form-label">所在部门</label>
+	            <div class="layui-input-block">
+	              <input type="text" name="" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+	            </div>
+	          </div>
+	          <div class="layui-form-item">
+	            <label class="layui-form-label">所属职责</label>
+	            <div class="layui-input-block">
+	              <select name="ssqy" lay-filter="ssqy">
+	                <option value="0" selected>督察员</option>
+	                <option value="1">巡查员</option>
+	                <option value="2">保洁员</option>
+	              </select>
+	            </div>
+	          </div>
+	          <div class="layui-form-item">
+	            <label class="layui-form-label">主要职责</label>
+	            <div class="layui-input-block">
+	              <input type="text" name="" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+	            </div>
+	          </div>
+	          <div class="layui-form-item" style="text-align: center;">
+	              <button class="layui-btn workp-add-back">返回</button>
+	              <button class="layui-btn layui-btn-primary" type="reset">重置</button>
+	              <button class="layui-btn layui-btn-danger" lay-submit="" lay-filter="workp-add-bt">提交</button> 
+	          </div>
+	        </form>
+	    </div>  
+	</div>
+</div>
+<style>
+.workp-wrap {
+    width: 100%;
+    margin: 10px auto;
+    padding:10px;
+    box-sizing: border-box;
+}
+.workp-wrap .workp-wrap-box{
+	margin-bottom: 10px;
+}
+</style>

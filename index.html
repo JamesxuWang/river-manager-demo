@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>河湖监督管理系统</title>
+  <link type="text/css" rel="stylesheet" href="js/lib/layui/css/layui.css" >
+  <link type="text/css" rel="stylesheet" href="css/comment.css" />
+  <link type="text/css" rel="stylesheet" href="css/layout.css" />
+  <link type="text/css" rel="stylesheet" href="css/map_switch.css" />
+  <link type="text/css" rel="stylesheet" href="/arcgis_js_api/library/3.14/3.14/esri/css/esri.css" />
+</head>
+
+<body class="layui-layout-body">
+  <div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo">河湖监督管理系统</div>
+    <ul class="layui-nav layui-layout-left"  lay-filter="runMoudle">
+      <li class="layui-nav-item" data-moudle='riverManager'> <a href="javascript:;"><i class="layui-icon">&#xe68e;</i><span class="layui-nav-title">河湖管理</span></a> </li> 
+      <li class="layui-nav-item" data-moudle='mediaShow'> <a href="javascript:;"><i class="layui-icon">&#xe705;</i><span class="layui-nav-title">实时监测</span></a></li>
+      <li class="layui-nav-item" data-moudle='workTogether'> <a href="javascript:;"><i class="layui-icon">&#xe630;</i><span class="layui-nav-title">协同办公</span></a></li>
+      <li class="layui-nav-item">
+        <a href="javascript:;"><i class="layui-icon">&#xe612;</i><span class="layui-nav-title">监督考核</span></a>
+        <!-- 
+        <dl class="layui-nav-child">
+          <dd><a href="javascript:;"><i class="layui-icon">&#xe68e;</i>aa</a></dd>
+          <dd><a href="javascript:;"><i class="layui-icon">&#xe68e;</i>aa</a></dd>
+        </dl> -->
+      </li>
+      <li class="layui-nav-item"><a href="javascript:;"><i class="layui-icon">&#xe62c;</i><span class="layui-nav-title">统计分析</span></a></li>
+      <li class="layui-nav-item"><a href="javascript:;"><i class="layui-icon">&#xe606;</i><span class="layui-nav-title">日常管理</span></a></li>
+      <!-- <li class="layui-nav-item"><a href="javascript:;"><i class="layui-icon">&#xe614;</i><span class="layui-nav-title">系统维护</span></a></li> -->
+    </ul>
+    <ul class="layui-nav layui-layout-right"  lay-filter="loginInfo">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="images/headbg.png" class="layui-nav-img">
+          西航道河长办
+        </a>
+        <!-- <dl class="layui-nav-child">
+          <dd><a href="javascript:;">基本资料</a></dd>
+          <dd><a href="javascript:;">安全设置</a></dd>
+        </dl> -->
+      </li>
+      <li class="layui-nav-item"><a href="javascript:;">退出</a></li>
+    </ul>
+  </div>
+  <div class="container">
+      <!-- 除了地图 -->
+      <div class="map-else" id="mapElse">
+        <!-- 河湖管理模块 -->
+          <div class="river-manager"></div>
+          <!-- 实时监控模块 -->
+          <div class="media-video"></div>
+          <!-- 协同办公模块 -->
+          <div class="work-together"></div>
+      </div>
+      <!-- 地图 -->
+      <div id="mapDiv" class="map-div">
+        <!-- 地图切换 -->
+          <div class="fun">
+              <ul class="switch" id="switchBaseMap">
+                  <li class="vecMap"></li>
+                  <li class="imgMap"></li>
+              </ul>
+          </div>
+          <!--地图工具-->
+          <div id="toolMap" class="map-tool">
+              <ul>
+                  <!-- <li id="layerCtroll" class="layer-ctroll">图层</li> -->
+                  <li id="fangda" class="fangda" title="放大"></li>
+                  <li id="suoxiao" class="suoxiao" title="缩小"></li>
+                  <li id="distance" class="distance" title="测距"></li>
+                  <li id="area" class="area" title="测面"></li>
+              </ul>
+          </div>
+          <!--版权-->
+          <div id="copyrightDiv" class="map-copyright"></div>
+      </div>    
+  </div> 
+  </div>
+  <script type="text/javascript">
+    var projectLocation = location.pathname.replace(/[^\/]+$/, '');
+    dojoConfig = {
+      serverIp: location.host,
+      parseOnLoad: true,
+      async: true,
+      packages: [{
+        name: 'modules',
+        location: projectLocation + 'js/modules'
+      }, {
+        name: "config",
+        location: projectLocation + 'js/config'
+      }, {
+        name: "data",
+        location: projectLocation + 'dijit/data'
+      }, {
+        name: "echo",
+        location: "/echo/src/echo"
+      }, {
+        // 3.0
+        name: "echarts",
+        location: projectLocation + 'js/lib/echarts',
+        main: "echarts.min"
+      }]
+    };
+  </script>
+
+  <script type="text/javascript" src="/arcgis_js_api/library/3.14/3.14/init.js"></script>
+  <script type="text/javascript" src="js/lib/jquery/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="js/lib/layui/layui.all.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+</body>
+
+</html>
