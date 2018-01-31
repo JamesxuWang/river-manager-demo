@@ -19,8 +19,8 @@ require([
     "modules/mapUnit/zoom",
     "modules/mapUnit/Copyright",
     "echo/utils/EventBus",
-    "echo/viewer/mapmanager", 
-    "dojo/i18n!esri/nls/jsapi",      
+    "echo/viewer/mapmanager",
+    "dojo/i18n!esri/nls/jsapi",
     "modules/layInit/layInit",
     "modules/riverManager/riverManager",
     "modules/mediaShow/mediaShow",
@@ -70,9 +70,9 @@ require([
     new area(map); /*测面模块*/
     new distance(map); /*测距模块*/
     // var tagging = new tagging(map); /*标注*/
-    new yingyan(map); /*鹰眼模块*/    
+    new yingyan(map); /*鹰眼模块*/
     new Copyright(map, config.Copyright);/*版权控件*/
-    
+
     // //菜单控制
     new layInit(map,config.layui);    /*layui初始化*/
     new riverManager(map,config.riverManager);
@@ -82,7 +82,7 @@ require([
     new supervAssess(map,config.supervAssess);
 
 
-    EventBus.emit('supervAssess'); 
+    EventBus.emit('mediaShow'); 
 
     /*添加比例尺控件*/
     bundle.widgets.scalebar.mi = "英里";
@@ -100,7 +100,7 @@ require([
     copyright.startup();
 
     layui.use('element', function(){
-      var element = layui.element;     
+      var element = layui.element;
     });
 
   });

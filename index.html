@@ -2,18 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,minimum-scale=1, initial-scale=1, maximum-scale=1,user-scalable=no;">
+  <meta name="viewport" content="width=device-width,minimum-scale=1, initial-scale=1, maximum-scale=1,user-scalable=no">
   <title>河湖监督管理系统</title>
   <link type="text/css" rel="stylesheet" href="js/lib/layui/css/layui.css" >
   <link type="text/css" rel="stylesheet" href="css/comment.css" />
   <link type="text/css" rel="stylesheet" href="css/layout.css" />
   <link type="text/css" rel="stylesheet" href="css/map_switch.css" />
   <link type="text/css" rel="stylesheet" href="/arcgis_js_api/library/3.14/3.14/esri/css/esri.css" />
-  <style>
-    html {
-      zoom: 130%;
-    }
-  </style>
 </head>
 
 <body class="layui-layout-body">
@@ -21,12 +16,12 @@
   <div class="layui-header">
     <div class="layui-logo">河湖监督管理系统</div>
     <ul class="layui-nav layui-layout-left"  lay-filter="runMoudle">
-      <li class="layui-nav-item" data-moudle='riverManager'> <a href="javascript:;"><i class="layui-icon">&#xe68e;</i><span class="layui-nav-title">河湖管理</span></a> </li> 
+      <li class="layui-nav-item" data-moudle='riverManager'> <a href="javascript:;"><i class="layui-icon">&#xe68e;</i><span class="layui-nav-title">河湖管理</span></a> </li>
       <li class="layui-nav-item" data-moudle='mediaShow'> <a href="javascript:;"><i class="layui-icon">&#xe705;</i><span class="layui-nav-title">实时监测</span></a></li>
       <li class="layui-nav-item" data-moudle='workTogether'> <a href="javascript:;"><i class="layui-icon">&#xe630;</i><span class="layui-nav-title">协同办公</span></a></li>
       <li class="layui-nav-item" data-moudle='supervAssess'>
         <a href="javascript:;"><i class="layui-icon">&#xe612;</i><span class="layui-nav-title">监督考核</span></a>
-        <!-- 
+        <!--
         <dl class="layui-nav-child">
           <dd><a href="javascript:;"><i class="layui-icon">&#xe68e;</i>aa</a></dd>
           <dd><a href="javascript:;"><i class="layui-icon">&#xe68e;</i>aa</a></dd>
@@ -85,8 +80,8 @@
           </div>
           <!--版权-->
           <div id="copyrightDiv" class="map-copyright"></div>
-      </div>    
-  </div> 
+      </div>
+  </div>
   </div>
   <script type="text/javascript">
     var projectLocation = location.pathname.replace(/[^\/]+$/, '');

@@ -50,10 +50,10 @@ define(["dojo/_base/declare",
                 // this.landModuleInit();
             },
             landModuleInit: function() {
-                //
+                // this.bindEvent();
             },
-            startup: function() {    
-                this.addBoxIndex = -1;      
+            startup: function() {
+                this.addBoxIndex = -1;
                 this.meaSpaceLayer = new GraphicsLayer();
                 this.map.addLayer(this.meaSpaceLayer);
                 this.symbol = new SimpleFillSymbol(
@@ -67,13 +67,13 @@ define(["dojo/_base/declare",
             },
             initHtml: function(dataObj) {
                 var self = this
-                        
+
                 $.get('./js/modules/mediaShow/mediaShowTree.html', function(data) {
                     $('.media-video').html(data);
                     self.initTree();
 
-                }); 
-            }, 
+                });
+            },
             initTree: function(dataobj) {
                 var self = this;
 
@@ -99,9 +99,9 @@ define(["dojo/_base/declare",
                     ,{name: '视频点b',alias: 'bb',id: '2'}
                     ,{name: '视频点c',alias: 'cc',id: '3'}
                     ]
-                  }] 
+                  }]
 
-                // $.get(self.config.findList, function(data) { 
+                // $.get(self.config.findList, function(data) {
                   // console.log(data);
                 layui.use('tree', function(){
 
@@ -112,19 +112,19 @@ define(["dojo/_base/declare",
                       ,click: function(node){
                              // console.log(node)
                          self.centerAtOrPlayer(node)
-                      } 
+                      }
                     });
                    $('#mediaTree').find('li').append('<span class="tree-icon-sp"><em class="layui-icon">&#xe652;</em> </span>');
                    $('#mediaTree').off('click').on('click','.tree-icon-sp',function(){
                         $(this).siblings('a').find('cite').click();
                    })
-                })   
-                // },'json');   
-                //添加视频    
+                })
+                // },'json');
+                //添加视频
             },
             centerAtOrPlayer: function(node){
                 var playerList = {};
-                playerList.list = [];                
+                playerList.list = [];
                 if(node.alias){
                     playerList.list.push(node.id);
                 }else{
@@ -139,47 +139,52 @@ define(["dojo/_base/declare",
             player: function(playerList) {
 
                 var self = this;
-                layui.use('tree', function(){
+                layui.use(['layer','form'],function(){
                     var  mapHeight = $('.container').height()
-                     ,mapWidth = $('.container').width()-340           
-                    ,layer = layui.layer
+                     ,mapWidth = $('.container').width()-340
+                     ,layer = layui.layer
+                    ,form = layui.form;
 
-                    if(self.addBoxIndex !== -1) return;
-                    self.addBoxIndex = layer.open({
-                        type: 1,
-                        title: playerList.name+'监测情况',
-                        content: '<div></div>',
-                        btn: [],
-                        fixed:true,
-                        shade: false,
-                        offset: ['60px','340px'],
-                        area: [mapWidth + 'px', mapHeight + 'px'],
-                        zIndex: 100,
-                        id: 'playerV',
-                        anim: 2,
-                        move: false,
-                        maxmin: false,
-                        success: function(layero, index) {                       
-                            self.initVideo(playerList);
-                        },
-                        cancel: function(index, layero){ 
-                            console.log(layero);
-                        },  
-                        end: function() {
-                            self.addBoxIndex = -1;
-                        }
-                    });
+                      if(self.addBoxIndex !== -1) return;
+                      $.get('./js/modules/mediaShow/mediaShowVideo.html', function(data) {
+                        self.addBoxIndex = layer.open({
+                            type: 1,
+                            title: playerList.name+'监测情况',
+                            content: data,
+                            btn: [],
+                            fixed:true,
+                            shade: false,
+                            offset: ['60px','340px'],
+                            area: [mapWidth + 'px', mapHeight + 'px'],
+                            zIndex: 100,
+                            id: 'playerV',
+                            anim: 2,
+                            move: false,
+                            maxmin: false,
+                            success: function(layero, index) {
+                                self.initVideo(playerList);
+                                form.render();
+                                self.bindEvent();
+                            },
+                            cancel: function(index, layero){
+                                console.log(layero);
+                            },
+                            end: function() {
+                                self.addBoxIndex = -1;
+                            }
+                        });
+                      })
                 })
             },
-            initVideo: function(playerList){                
+            initVideo: function(playerList){
                 // src="movie.ogg"
                 var self = this;
-                $('#playerV').empty(); 
-                var  url= '',ls = playerList.list.length; 
+                $('.player-video-box').empty();
+                var  url= '',ls = playerList.list.length;
                 if(ls == '1'){
                     url= self.config.filePath + playerList.list[0]+'.gif';
-                    // $('#playerV').append('<video src="'+url+'"  height="100%" width="100%" controls autoplay muted></video>')
-                    $('#playerV').append(
+                    // $('.player-video-box').append('<video src="'+url+'"  height="100%" width="100%" controls autoplay muted></video>')
+                    $('.player-video-box').append(
                     `<div class="layui-row" style = "width:100%;height:100%;">
                         <div class="layui-col-xs12 layui-col-md12">
                           <div class="grid-demo grid-demo-bg1">
@@ -189,7 +194,7 @@ define(["dojo/_base/declare",
                     </div>`
                     )
                 }else if(ls>=2 && ls <= 4){
-                    $('#playerV').append(
+                    $('.player-video-box').append(
                     `<div class="layui-row" style = "width:100%;height:50%;">
                         <div class="layui-col-xs6 layui-col-md6">
                           <div class="grid-demo grid-demo-bg1"><img width="100%" height="100%" src="./dijit/video/1.gif" alt="" /></div>
@@ -208,7 +213,7 @@ define(["dojo/_base/declare",
                     </div>`
                     );
                 }else if(ls>=5 && ls <= 9){
-                    $('#playerV').append(
+                    $('.player-video-box').append(
                     `<div class="layui-row" style = "width:33%;height:33%;">
                         <div class="layui-col-xs4 layui-col-md4">
                           <div class="grid-demo">6/12</div>
@@ -242,51 +247,18 @@ define(["dojo/_base/declare",
                           <div class="grid-demo">6/12</div>
                         </div>
                     </div>`);
-                } 
+                }
                 // var  url= self.config.filePath + name;
-                // $('#playerV').append('<video src="'+url+'"  height="100%" width="100%" controls autoplay muted></video>')
-                // $('#playerV').find('video').attr('src', ); 
+                // $('.player-video-box').append('<video src="'+url+'"  height="100%" width="100%" controls autoplay muted></video>')
+                // $('.player-video-box').find('video').attr('src', );
                 $('.layui-row>div').append('<button class="layui-btn layui-btn-theme">预警上报</button>')
-                   
-                $('#playerV').append(
-                `<form class="layui-form">
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">预警上报名称:</label>
-                    <div class="layui-input-block">
-                      <input type="text" name="YHDMC"  placeholder="请输入" autocomplete="off" class="layui-input">
-                    </div>
-                  </div>
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">预警上报时间:</label>
-                    <div class="layui-input-block">
-                      <input type="text" name="YHDWZ" placeholder="请输入" autocomplete="off" class="layui-input">
-                    </div>
-                  </div>
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">预警所属河段:</label>
-                    <div class="layui-input-block">
-                      <input type="checkbox" name="DZNTYPE" title="现存点" checked>
-                      <input type="checkbox" name="DZHTYPE" title="历史点">
-                    </div>
-                  </div>
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">预警内容:</label>
-                    <div class="layui-input-block">
-                        <select name="QX" lay-verify="required" lay-filter="QX">
-                            <option value=""></option>
-                            <option value="0">天心区</option>
-                            <option value="1">天心区</option>
-                        </select>                
-                    </div>
-                  </div>
-                  <div class="layui-form-item" style="text-align: center;margin-top: 20px;">
-                      <button class="layui-btn layui-btn-primary" type="reset">取消</button>
-                      <button class="layui-btn lay-submit layui-btn-danger" lay-submit="" lay-filter="disaster-search-bt">提交</button> 
-                  </div>
-                </form>`
-                )
-            },         
+
+
+            },
             bindEvent: function() {
+              $('#playerV').off('click').on('click','.layui-btn-theme',function(){
+                $('#playerV .player-form-box').removeClass('hide');
+              })
             },
             close: function() {
                 if (this.meaSpaceLayer) {
@@ -300,7 +272,7 @@ define(["dojo/_base/declare",
                 if(this.addBoxIndex!==-1){
                     $('#playerV').parent().remove();
                     this.addBoxIndex = -1
-                }               
+                }
                 $('.media-video').empty();
             }
         });
