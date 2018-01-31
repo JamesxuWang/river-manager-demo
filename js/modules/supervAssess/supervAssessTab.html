@@ -1,0 +1,106 @@
+<div class="wrap">
+    <ul class="layui-nav common-manager-title">
+        <li class="layui-nav-item layui-this"><a href="javascript:;">监督考核</a></li>
+        <!-- <li class="layui-nav-item"><a href="">产品</a></li> -->
+    </ul>
+    <ul class="layui-nav layui-nav-tree superv-wrap-nav" lay-filter="superv-wrap-nav">
+        <li class="layui-nav-item"><a href="javascript:;">监督考核</a></li>
+        <li class="layui-nav-item"><a href="javascript:;">公众评价</a></li>
+        <li class="layui-nav-item layui-nav-itemed">
+            <a href="javascript:;">考核查询</a>
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:;">周期考核查询</a></dd>
+                <dd><a href="javascript:;">月度考核查询</a></dd>
+                <dd><a href="javascript:;">季度考核查询</a></dd>
+                <dd><a href="javascript:;">年度考核查询</a></dd>
+            </dl>
+        </li>
+    </ul>
+</div>
+<style>
+.wrap {
+    width: 100%;
+    position: relative;
+}
+
+.wrap .superv-wrap-nav {
+    background-color: #FFF!important;
+    color: #008bfe!important;
+}
+
+.wrap .superv-wrap-nav {
+    width: 100%;
+    position: absolute;
+    top: 70px;
+    bottom: 0;
+    background-color: #fff;
+}
+
+.wrap .superv-wrap-nav .layui-nav-item {
+    width: 100%;
+}
+
+.wrap .layui-nav-tree .layui-nav-item a {
+    color: #008bfe;
+    /*background-color: #d3d3d3;*/
+}
+
+.wrap .layui-nav-tree .layui-nav-item a:hover {
+    background-color: #d3d3d3;
+    color: #008bfe;
+}
+
+.wrap .layui-nav-tree .layui-nav-child a:hover {
+    color: #120D58;
+}
+
+.wrap .superv-wrap-nav li,
+.wrap .superv-wrap-nav li dd {
+    border-bottom: 1px solid #d3d3d3;
+}
+
+.wrap .layui-nav-tree .layui-this {
+    background-color: inherit;
+}
+
+.wrap .layui-nav-tree .layui-this>a {
+    color: #d3d3d3;
+    background-color: #6665e5;
+}
+
+.wrap .layui-nav-itemed .layui-nav-child {
+    text-indent: 20px;
+    background-color: rgba(190, 190, 210, 0.3)!important;
+}
+
+.wrap .layui-nav-tree .layui-nav-child dd.layui-this a {
+    background-color: inherit;
+    color: inherit;
+}
+
+.wrap .layui-nav-tree .layui-nav-child dd.layui-this {
+    color: #d3d3d3;
+    background-color: #6665e5;
+}
+
+.wrap .layui-nav-itemed>a {
+    color: #008bfe!important;
+    /*background-color: #d3d3d3;*/
+}
+
+.wrap .layui-nav .layui-nav-more {
+    border-color: #b57676 transparent transparent;
+    border-top-color: rgba(18, 13, 88, .7);
+}
+
+.wrap .layui-nav .layui-nav-mored,
+.wrap .layui-nav-itemed .layui-nav-more {
+    margin-top: -9px;
+    border-style: dashed dashed solid;
+    border-color: transparent transparent #120d58;
+}
+
+.wrap .layui-nav-itemed .layui-nav-more {
+    top: 20px;
+}
+</style>

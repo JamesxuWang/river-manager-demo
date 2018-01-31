@@ -3,15 +3,15 @@
         <div class="layui-form">
             <div class="layui-form-item">
             <label class="layui-form-label">河湖点名称: </label>
-            <div class="layui-input-block river-content-name"> 西航道支线</div>
+            <div class="layui-input-block" data-name='name'> 西航道支线</div>
           </div>
           <div class="layui-form-item">
             <label class="layui-form-label">河长: </label>
-            <div class="layui-input-block">王大锤 </div>
+            <div class="layui-input-block" data-name='fzr'>王大锤 </div>
           </div>
           <div class="layui-form-item">
             <label class="layui-form-label">联系电话: </label>
-            <div class="layui-input-block"> 10086</div>
+            <div class="layui-input-block" data-name='tel'> 10086</div>
           </div>
           <div class="layui-form-item">
             <label class="layui-form-label">所属区域: </label>
@@ -19,7 +19,7 @@
           </div>
           <div class="layui-form-item">
             <label class="layui-form-label">河湖点等级: </label>
-            <div class="layui-input-block">等级一 </div>
+            <div class="layui-input-block">I</div>
           </div>
         </div>  
     </div>
@@ -42,16 +42,12 @@
                 <table class="layui-table layui-hide" id="river-video-table" lay-filter="table*">
                 </table> </div>
             </div>
-          </div>
         </div>
+    </div>
         
-        <div class="layui-page" id="layui-river-page"></div>
+        <!-- <div class="layui-page" id="layui-river-page"></div> -->
     </div>                    
-</div>                
-<div class="river-add hide">
-    <!-- <button class="layui-btn layui-btn-primary layui-btn-sm"><em class="layui-icon">&#xe65a;</em></button> -->
-    
-</div>
+</div>  
 <style>
   /*地灾结果*/
 .river-content{
@@ -132,38 +128,5 @@
 .river-content-search .layui-input-block {
     margin-left: 100px;
     min-height: 27px;
-}
-.river-content-search .layui-form-checked span, .layui-form-checked:hover span {
-    background-color: #6665e5;
-}
-.river-content-search .layui-form-checked i, .layui-form-checked:hover i {
-    color: #6665e5;
-}
-.river-content-search .layui-form-checked, .layui-form-checked:hover {
-    border-color: #6665e5;
-}
-.river-content-search .layui-form-checkbox{
-    margin-right: 0px;
-    padding-right: 25px;
-}
-.river-content-search .river-content-draw{
-    display: inline-block;
-    height: 38px;
-    width: 38px;
-    line-height: 38px;
-    background: #f0f0f0;
-    text-align: center;
-    margin-right: 10px;
-    cursor: pointer;
-}
-.river-content-search .river-content-draw.layui-this{
-    background-color: #6665e5;
-    color: #fff;
-}
-.river-content-search .river-content-draw.layui-this .layui-ico{
-    color: #fff;
-}
-.river-content-search .river-content-draw .layui-icon{
-    font-size: 24px;
 }
 </style>

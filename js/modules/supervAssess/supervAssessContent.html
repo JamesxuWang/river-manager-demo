@@ -1,0 +1,110 @@
+<div class="superc-wrap">
+    <form class="layui-form" action="">     
+      <div class="layui-form-item">
+        <div class="layui-inline">
+          <label class="layui-form-label">区县</label>
+          <div class="layui-input-inline">
+            <select name="interest" lay-filter="aihao">
+                <option value="0">白云区</option>
+                <option value="1">荔湾区</option>
+                <option value="1">南沙区</option>
+                <option value="1">番禺区</option>
+                <option value="1">海珠区</option>
+            </select>
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label">河道</label>
+          <div class="layui-input-inline">
+            <select name="interest" lay-filter="aihao">
+                <option value="0">石井河</option>
+                <option value="1">增埗河</option>
+                <option value="1">西航道支线</option>
+            </select>
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label">河段</label>
+          <div class="layui-input-inline">
+            <select name="interest" lay-filter="aihao">
+                <option value="0">河源</option>
+                <option value="1">上游</option>
+                <option value="1">中游</option>
+                <option value="1">下游</option>
+                <option value="1">河口</option>
+            </select>
+          </div>
+        </div><div class="layui-inline">
+          <label class="layui-form-label">考核人员</label>
+          <div class="layui-input-inline">
+            <select name="interest" lay-filter="aihao">
+                <option value="0">阮倚天</option>
+                <option value="1">何三丰</option>
+                <option value="1">古屠龙</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <div class="layui-form-item">
+        <div class="layui-inline">
+          <label class="layui-form-label">状态</label>
+          <div class="layui-input-inline">
+            <select name="interest" lay-filter="aihao">
+                <option value="0">已完成</option>
+                <option value="1">未完成</option>
+            </select>
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label">开始时间</label>
+          <div class="layui-input-inline">
+            <input type="text" name="date" id="dateBegin" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label">结束时间</label>
+          <div class="layui-input-inline">
+            <input type="text" name="date" id="dateEnd" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+        <div class="layui-inline">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-theme" data-type="reload">搜索</button>
+                <button class="layui-btn">导出</button> 
+            </div>
+        </div>
+      </div>
+    </form> 
+    <div class="superv-table-div">
+        <table class="layui-hide " id="supervATable" lay-filter="user"></table>
+    </div>
+</div>
+<script type="text/html" id="supervAFormbar">
+    <a class="layui-btn layui-btn-theme layui-btn-xs" lay-event="detail">查看轨迹</a>
+</script>
+<style>
+.superc-wrap {
+    width: 100%;
+    margin: 20px auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.superc-wrap .layui-btn-container{
+    padding-left: 20px;
+}
+.superc-wrap .layui-form-item {
+    margin-bottom: 7px;
+}
+.superc-wrap .layui-form-label {
+    width: 60px;
+}
+@media screen and (max-width:1367px){
+    .superc-wrap .layui-form-item .layui-input-inline {
+         width: 120px;
+    }
+    .superc-wrap .layui-form-item {
+        margin-bottom: 5px;
+    }
+}
+</style>

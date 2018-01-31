@@ -14,6 +14,7 @@ define([
     "esri/layers/GraphicsLayer",
     "echo/utils/EventBus",
     "esri/toolbars/draw",
+    "esri/geometry/Polygon",
     "esri/geometry/Polyline",
     "esri/geometry/Point",
     "dojo/on",
@@ -37,6 +38,7 @@ define([
     GraphicsLayer,
     EventBus,
     Draw,
+    Polygon,
     Polyline,
     Point,
     on,
@@ -54,7 +56,7 @@ define([
             EventBus.on("riverManager", this.startup, this);
             EventBus.on("All_WIDGETS_CLOSE", this.close, this);
             this.addBoxIndex = -1;
-            this.pageSize =2;         
+            this.pageSize =5;         
             this.featuresVideoArr = null;        
             this.drawTool = new Draw(this.map);
 
@@ -64,7 +66,12 @@ define([
                     new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
                         new Color([255, 0, 0, 0.1]), 1),
                     new Color([40, 136, 215, 1]));
-
+            this.opcitySymbol = new SimpleFillSymbol(
+                    SimpleFillSymbol.STYLE_SOLID,
+                    new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+                        new Color([255, 0, 0]), 2),
+                    new Color([102, 195, 233, 0.2])
+                );
             this.bindEvent();
            
         },
@@ -154,11 +161,12 @@ define([
             var self = this;            
             self.featuresArr = self.demoData.river;
             var ls = self.featuresArr.length;
+            // self.pageSize = 3//
             layui.use('laypage', function() {
                 var laypage = layui.laypage;
                 laypage.render({
                   elem: 'layui-river-page'
-                  ,count: ls*4 //数据总数，从服务端得到
+                  ,count: ls //数据总数，从服务端得到
                   ,limit:self.pageSize
                   ,groups: 3
                   ,jump: function(obj, first){
@@ -206,8 +214,13 @@ define([
               //     offIndexStyle集成       
               // fsetData[i].setSymbol(self.markersymbol);
               // self.riverManagerLayer.add(fsetData[i]);
-              fsetData[i].attributes.indexNum = i;                       
-              var _graphic =  new Graphic(new Polyline(fsetData[i].geometry),self.lineSymbol);
+              fsetData[i].attributes.indexNum = i;   
+              if(fsetData[i].attributes.type == 'river'){
+                var _graphic =  new Graphic(new Polyline(fsetData[i].geometry),self.lineSymbol);
+              }else{
+                var _graphic =  new Graphic(new Polygon(fsetData[i].geometry),self.opcitySymbol);
+              }
+
               _graphic.attributes = fsetData[i].attributes;
               self.riverManagerLayer.add(_graphic);
             }
@@ -232,52 +245,61 @@ define([
                      
               var featThis = self.riverManagerLayer.graphics[index] || fsetData[numAttr];
               self.infoWindowShow(featThis);
-              self.contentInit(name);
+              self.contentInit(featThis.attributes);
             });
             $('.river-manager-results .panel-heading').eq(0).click();
         },
 
-        contentInit: function(name) {
+        contentInit: function(attributes) {
             var self = this               
-            ,mapHeight = $('.container').height()
-            ,layer = layui.layer
-            ,tableLimit = Math.floor((mapHeight-300-80)/40);
-            if(self.addBoxIndex !== -1){
-               $('.river-content-name').html(name);     
-            }else{
-                //本表单通过ajax加载 --以模板的形式，当然你也可以直接写在页面上读取
-                $.get('./js/modules/riverManager/riveContent.html', null, function(form) {
-                    self.addBoxIndex = layer.open({
-                        type: 1,
-                        title: '河流属性档案',
-                        content: form,
-                        btn: [],
-                        fixed:true,
-                        shade: false,
-                        offset: ['60px','340px'],
-                        area: ['400px',mapHeight+'px'],
-                        id:'riverContentS',
-                        zIndex: 1995,
-                        maxmin: true,
-                        success: function(layero, index) {                          
-                            //图表
-                            var form = layui.form;
-                            form.render();
-                            self.initRiverPoint();
-                            self.initTable(tableLimit);
-                            $('.river-content-name').html(name);     
-                        },
-                        cancel: function(index, layero){ 
-                            console.log(layero);
-                        },  
-                        end: function() {
-                            self.addBoxIndex = -1;
-                            self.close();
-                        }
+            ,mapHeight = $('.container').height()       
+            ,tableLimit = Math.floor((mapHeight-300-80)/40); 
+            layui.use(['layer','form'],function() {
+                var form = layui.form
+                ,layer = layui.layer;
+                if(self.addBoxIndex !== -1){
+                     self.initContentForm(attributes);     
+                }else{
+                    //本表单通过ajax加载 --以模板的形式，当然你也可以直接写在页面上读取
+                    $.get('./js/modules/riverManager/riveContent.html', null, function(divCont) {
+                        self.addBoxIndex = layer.open({
+                            type: 1,
+                            title: '河流属性档案',
+                            content: divCont,
+                            btn: [],
+                            fixed:true,
+                            shade: false,
+                            offset: ['60px','340px'],
+                            area: ['400px',mapHeight+'px'],
+                            id:'riverContentS',
+                            zIndex: 1995,
+                            maxmin: true,
+                            success: function(layero, index) {                          
+                                //图表
+                                form.render();
+                                self.initRiverPoint();
+                                self.initTable(tableLimit);
+                                self.initContentForm(attributes);     
+                            },
+                            cancel: function(index, layero){ 
+                                console.log(layero);
+                            },  
+                            end: function() {
+                                self.addBoxIndex = -1;
+                                self.close();
+                            }
+                        });
                     });
-                });
-            }    
+                }
+             })       
             // this.showLayer();    
+        },
+        initContentForm: function(attributes){
+            var self = this,
+            data = attributes;    
+            $.each(data,function(index, el) {
+                $('.river-content-div').find('.layui-input-block[data-name='+index+']').html(el);
+            });
         },
         initRiverPoint: function(){
             var self = this;
@@ -337,50 +359,53 @@ define([
         },
         initTable: function(tableLimit){
             var self = this;
-            var layTable = layui.table; 
-            var VideoData =  self.featuresVideoArr;
-            var DirtyData =  self.featuresDirtyArr;
-            var ShowData =  self.featuresShowArr;
-            //表格1
-            layTable.render({
-              elem: '#river-dirty-table'
-              ,cols: [[ //标题栏index
-                {field: 'name',title: '污染源名称' ,align:'left',width:'50%', event: 'setPosition',  style:'cursor: pointer;'}
-                ,{field: 'OBJECTID', title: '其他参数',width:'49%',event:"centerAt"}               
-              ]]
-              ,data:DirtyData.concat(DirtyData).concat(DirtyData).concat(DirtyData).concat(DirtyData) ,limit:tableLimit ,even: false ,unresize:true
-              ,page: {
-                  layout: ['count', 'prev', 'page', 'next'] ,groups: 1 ,first: false ,last: false 
-                }
-            });
-            //表格2
-            layTable.render({
-              elem: '#river-show-table'
-              ,cols: [[ //标题栏index
-                {field: 'name',title: '公示牌名称' ,align:'left',width:'50%', event: 'setPosition',  style:'cursor: pointer;'}
-                ,{field: 'OBJECTID', title: '其他参数',width:'49%',event:"centerAt"}               
-              ]]
-              ,data:ShowData ,limit:tableLimit ,even: false ,unresize:true
-              ,page: {
-                  layout: ['count', 'prev', 'page', 'next'] ,groups: 1 ,first: false ,last: false 
-                }
-            });
-            //表格3
-            layTable.render({
-              elem: '#river-video-table'
-              ,cols: [[ //标题栏index
-                {field: 'name',title: '视频监控点名称' ,align:'left',width:'50%', event: 'setPosition',  style:'cursor: pointer;'}
-                ,{field: 'OBJECTID', title: '其他参数',width:'49%',event:"centerAt"}               
-              ]]
-              ,data:VideoData ,limit:tableLimit ,even: false ,unresize:true
-              ,page: {
-                  layout: ['count', 'prev', 'page', 'next'] ,groups: 1 ,first: false ,last: false 
-                }
-            });
-             //监听工具条
-            layTable.on('tool(table*)', function(obj){ 
-                self.infoWindowShow( self.mapLayer.graphics[obj.data.num])
-            });
+            layui.use('table',function() {
+
+                var layTable = layui.table; 
+                var VideoData =  self.featuresVideoArr;
+                var DirtyData =  self.featuresDirtyArr;
+                var ShowData =  self.featuresShowArr;
+                //表格1
+                layTable.render({
+                  elem: '#river-dirty-table'
+                  ,cols: [[ //标题栏index
+                    {field: 'name',title: '污染源名称' ,align:'left',width:'50%', event: 'setPosition',  style:'cursor: pointer;'}
+                    ,{field: 'OBJECTID', title: '其他参数',width:'49%',event:"centerAt"}               
+                  ]]
+                  ,data:DirtyData.concat(DirtyData).concat(DirtyData).concat(DirtyData).concat(DirtyData) ,limit:tableLimit ,even: false ,unresize:true
+                  ,page: {
+                      layout: ['count', 'prev', 'page', 'next'] ,groups: 1 ,first: false ,last: false 
+                    }
+                });
+                //表格2
+                layTable.render({
+                  elem: '#river-show-table'
+                  ,cols: [[ //标题栏index
+                    {field: 'name',title: '公示牌名称' ,align:'left',width:'50%', event: 'setPosition',  style:'cursor: pointer;'}
+                    ,{field: 'OBJECTID', title: '其他参数',width:'49%',event:"centerAt"}               
+                  ]]
+                  ,data:ShowData ,limit:tableLimit ,even: false ,unresize:true
+                  ,page: {
+                      layout: ['count', 'prev', 'page', 'next'] ,groups: 1 ,first: false ,last: false 
+                    }
+                });
+                //表格3
+                layTable.render({
+                  elem: '#river-video-table'
+                  ,cols: [[ //标题栏index
+                    {field: 'name',title: '视频监控点名称' ,align:'left',width:'50%', event: 'setPosition',  style:'cursor: pointer;'}
+                    ,{field: 'OBJECTID', title: '其他参数',width:'49%',event:"centerAt"}               
+                  ]]
+                  ,data:VideoData ,limit:tableLimit ,even: false ,unresize:true
+                  ,page: {
+                      layout: ['count', 'prev', 'page', 'next'] ,groups: 1 ,first: false ,last: false 
+                    }
+                });
+                 //监听工具条
+                layTable.on('tool(table*)', function(obj){ 
+                    self.infoWindowShow( self.mapLayer.graphics[obj.data.num])
+                });
+            })    
         }, 
         //画图    
         symbolDraw: function(event) {
@@ -407,7 +432,7 @@ define([
                 this.drawComplete.remove();
             }).bind(this));
                 
-            },
+        },
         // 信息框展示
         infoWindowShow: function(featThis){
             $('.esriPopupWrapper>div:eq(0)').addClass('hide');

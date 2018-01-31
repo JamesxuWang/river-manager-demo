@@ -25,6 +25,7 @@ require([
     "modules/riverManager/riverManager",
     "modules/mediaShow/mediaShow",
     "modules/workTogether/workTogether",
+    "modules/supervAssess/supervAssess",
     "dojo/NodeList-traverse",
     "dojo/domReady!"
   ],
@@ -72,13 +73,16 @@ require([
     new yingyan(map); /*鹰眼模块*/    
     new Copyright(map, config.Copyright);/*版权控件*/
     
-    //菜单控制
+    // //菜单控制
     new layInit(map,config.layui);    /*layui初始化*/
     new riverManager(map,config.riverManager);
     new mediaShow(map,config.mediaShow);
     new workTogether(map,config.workTogether);
 
-    EventBus.emit('workTogether'); 
+    new supervAssess(map,config.supervAssess);
+
+
+    EventBus.emit('supervAssess'); 
 
     /*添加比例尺控件*/
     bundle.widgets.scalebar.mi = "英里";

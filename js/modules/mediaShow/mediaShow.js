@@ -102,7 +102,9 @@ define(["dojo/_base/declare",
                   }] 
 
                 // $.get(self.config.findList, function(data) { 
-                  // console.log(data);              
+                  // console.log(data);
+                layui.use('tree', function(){
+
                    layui.tree({
                       elem: '#mediaTree'
                       ,skin: 'shihuang'
@@ -116,6 +118,7 @@ define(["dojo/_base/declare",
                    $('#mediaTree').off('click').on('click','.tree-icon-sp',function(){
                         $(this).siblings('a').find('cite').click();
                    })
+                })   
                 // },'json');   
                 //添加视频    
             },
@@ -134,36 +137,39 @@ define(["dojo/_base/declare",
                 this.player(playerList)
             },
             player: function(playerList) {
-                var self = this
-                ,mapHeight = $('.container').height()
-                 ,mapWidth = $('.container').width()-340           
-                ,layer = layui.layer
 
-                if(self.addBoxIndex !== -1) return;
-                self.addBoxIndex = layer.open({
-                    type: 1,
-                    title: playerList.name+'监测情况',
-                    content: '<div></div>',
-                    btn: [],
-                    fixed:true,
-                    shade: false,
-                    offset: ['60px','340px'],
-                    area: [mapWidth + 'px', mapHeight + 'px'],
-                    zIndex: 100,
-                    id: 'playerV',
-                    anim: 2,
-                    move: false,
-                    maxmin: false,
-                    success: function(layero, index) {                       
-                        self.initVideo(playerList);
-                    },
-                    cancel: function(index, layero){ 
-                        console.log(layero);
-                    },  
-                    end: function() {
-                        self.addBoxIndex = -1;
-                    }
-                });
+                var self = this;
+                layui.use('tree', function(){
+                    var  mapHeight = $('.container').height()
+                     ,mapWidth = $('.container').width()-340           
+                    ,layer = layui.layer
+
+                    if(self.addBoxIndex !== -1) return;
+                    self.addBoxIndex = layer.open({
+                        type: 1,
+                        title: playerList.name+'监测情况',
+                        content: '<div></div>',
+                        btn: [],
+                        fixed:true,
+                        shade: false,
+                        offset: ['60px','340px'],
+                        area: [mapWidth + 'px', mapHeight + 'px'],
+                        zIndex: 100,
+                        id: 'playerV',
+                        anim: 2,
+                        move: false,
+                        maxmin: false,
+                        success: function(layero, index) {                       
+                            self.initVideo(playerList);
+                        },
+                        cancel: function(index, layero){ 
+                            console.log(layero);
+                        },  
+                        end: function() {
+                            self.addBoxIndex = -1;
+                        }
+                    });
+                })
             },
             initVideo: function(playerList){                
                 // src="movie.ogg"

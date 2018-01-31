@@ -96,16 +96,16 @@ html {
     border: 1px solid #DDD;
     color: #6665e5;
 }
-.map-else .wrap .river-manager-title{
+.map-else .wrap .common-manager-title{
     /*font-size: 23px;*/
     background-color: #ffffff;
     box-shadow: 0px 3px 0px #f0f0f0;
 }
-.map-else .layui-nav-item a {
+.map-else .common-manager-title .layui-nav-item a {
     font-size: 23px;
     color: #666;
 }
-.map-else .layui-nav-item a:hover,.river-manager-title .layui-nav-item .layui-this a {
+.map-else .layui-nav-item a:hover,.common-manager-title .layui-nav-item .layui-this a {
     color: #6665e5;
 }
 /*地图工具*/

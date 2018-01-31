@@ -1,51 +1,62 @@
-<div class="video-wrap">
-	<ul class="layui-nav river-manager-title" lay-filter="river-manager-nav">
-      <li class="layui-nav-item layui-this"><a href="">实时监控</a></li>
-      <!-- <li class="layui-nav-item"><a href="">产品</a></li> -->
+<div class="wrap">
+    <ul class="layui-nav common-manager-title">
+        <li class="layui-nav-item layui-this"><a href="javascript:;">实时监控</a></li>
+        <!-- <li class="layui-nav-item"><a href="">产品</a></li> -->
     </ul>
     <ul class="site-doc-bgcolor layui-tree" id="mediaTree">
-      <!-- <li class="layui-bg-orange">我叫mt1</li>
+        <!-- <li class="layui-bg-orange">我叫mt1</li>
       <li class="layui-bg-cyan">我叫mt4</li>
       <li class="layui-bg-gray">我叫mt7</li> -->
     </ul>
 </div>
 <style>
-.video-wrap {
+.wrap {
     width: 100%;
 }
-.site-doc-bgcolor li {
+
+.wrap .layui-tree li {
     padding: 10px;
     position: relative;
 }
-.medio-video .layui-tree-skin-shihuang .layui-tree-branch{color: #120d58;}
-.medio-video .layui-tree li i {
+
+.wrap .layui-tree-skin-shihuang .layui-tree-branch {
     color: #120d58;
 }
-.medio-video .tree-icon-sp{
-	position: absolute;
-	right: 30px;
-	top: 14px;
-} 
-.medio-video .tree-icon-sp .layui-icon{
-	color: #120d58;
-	font-size: 20px;
-	cursor: pointer;
-}  
-#playerV .layui-row div{
-	height: 100%;
-	position: relative;
-} 
-#playerV .layui-row .layui-btn-theme{
-	position: absolute;
-	right: 10px;
-	top: 10px;
+
+.wrap .layui-tree li i {
+    color: #120d58;
 }
+
+.wrap .tree-icon-sp {
+    position: absolute;
+    right: 30px;
+    top: 14px;
+}
+
+.wrap .tree-icon-sp .layui-icon {
+    color: #120d58;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#playerV .layui-row div {
+    height: 100%;
+    position: relative;
+}
+
+#playerV .layui-row .layui-btn-theme {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
 .grid-demo {
     text-align: center;
     background-color: #79C48C;
     color: #fff;
 }
+
 .grid-demo-bg1 {
     background-color: #63BA79;
-} 
+}
 </style>

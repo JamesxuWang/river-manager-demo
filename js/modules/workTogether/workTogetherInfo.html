@@ -1,0 +1,109 @@
+<div class="worki-wrap">
+	<!-- 人员信息 -->
+	<div class="worki-info">
+		<div class="workp-add-content" style="
+		            background: #fff;
+		            padding: 10px 5px;
+		            border-radius: 3px;
+		            /*border: 1px solid #120d58;*/
+		        ">
+
+		        <form class="layui-form workp-add-form">
+		          <div class="layui-form-item">
+		            <label class="layui-form-label">成员名称</label>
+		            <div class="layui-input-block"> 督察员a</div>
+		          </div>
+		          <div class="layui-form-item">
+		            <label class="layui-form-label">联系电话</label>
+		            <div class="layui-input-block"> 10086001</div>
+		          </div>
+		          <div class="layui-form-item">
+		            <label class="layui-form-label">所在部门</label>
+		            <div class="layui-input-block"> 行政部信息中心</div>
+		          </div>
+		          <div class="layui-form-item">
+		            <label class="layui-form-label">所属职责</label>
+		            <div class="layui-input-block">督察员 </div>
+		          </div>
+		          <div class="layui-form-item">
+		          	<button class="layui-btn">添加工作路线</button>
+		          	<button class="layui-btn layui-btn-danger">派发紧急任务</button>
+		          </div>
+		        </form>
+		    </div>  
+		</div>
+	</div>
+	<!-- 任务指派 -->
+	<div class="worki-add" style="margin-top: 5px;">
+		<div class="layui-tab layui-tab-card">
+          <ul class="layui-tab-title">
+            <li class="layui-this">工作路线</li>
+          </ul>
+          <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <table class="layui-table layui-hide" id="worki-load-table" lay-filter="table*worki">
+                </table>               
+            </div>
+	      </div>
+		</div>
+	</div>	
+</div>
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+</script>
+
+<style>
+.worki-wrap {
+    width: 100%;
+}
+.workp-add-content .layui-field-title {
+    margin:0 0 10px 0; 
+    /*border-width: 1px 0 0;*/
+    border-width: 0;
+    position: relative;
+}
+.workp-add-content .layui-form-item{
+    margin-bottom: 5px;
+}
+.workp-add-content .layui-form-label{
+    width: 75px;   
+    padding: 0;
+}
+.workp-add-content .layui-input-block {
+    margin-left: 100px;
+    min-height: 27px;
+}
+.workp-add-content .layui-form-checked span, .layui-form-checked:hover span {
+    background-color: #6665e5;
+}
+.workp-add-content .layui-form-checked i, .layui-form-checked:hover i {
+    color: #6665e5;
+}
+.workp-add-content .layui-form-checked, .layui-form-checked:hover {
+    border-color: #6665e5;
+}
+.workp-add-content .layui-form-checkbox{
+    margin-right: 0px;
+    padding-right: 25px;
+}
+.workp-add-content .river-content-draw{
+    display: inline-block;
+    height: 38px;
+    width: 38px;
+    line-height: 38px;
+    background: #f0f0f0;
+    text-align: center;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.workp-add-content .river-content-draw.layui-this{
+    background-color: #6665e5;
+    color: #fff;
+}
+.workp-add-content .river-content-draw.layui-this .layui-ico{
+    color: #fff;
+}
+.workp-add-content .river-content-draw .layui-icon{
+    font-size: 24px;
+}   
+</style>
