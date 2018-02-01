@@ -93,14 +93,27 @@ define(["dojo/_base/declare",
                     {name: '总河长',alias: 'aa',id: '1'}
                     ,{name: '副总河长',alias: 'aa',id: '2'}
                     ,{name: '河长办公室',alias: 'aa',id: '3'}
-                    ,{name: '督察员a',alias: 'aa',id: '4'}
-                    ,{name: '巡查员a',alias: 'bb',id: '5'}
-                    ,{name: '保洁员a',alias: 'cc',id: '6'}
-                    ,{name: '保洁员b',alias: 'cc',id: '7'}
-                    ,{name: '保洁员c',alias: 'cc',id: '8'}
-                    ,{name: '河段长a',alias: 'cc',id: '10'}
-                    ,{name: '河段长b',alias: 'cc',id: '11'}                  
-                    ,{name: '河段长c',alias: 'cc',id: '11'}                  
+                    ,{name: '督察员',alias: 'aa',id: '4'}
+                    ,{name: '石井河干流',alias: 'cc',spread:true,id: '10',children: [
+                        {name: '区河长',alias: 'aa',id: '1'}
+                        ,{name: '巡查员a',alias: 'aa',id: '5'}
+                        ,{name: '龙湾镇段',alias: 'bb',id: '5',spread:true,children: [
+                            {name: '镇河长',alias: 'aa',id: '1'}
+                            ,{name: '保洁员a',alias: 'aa',id: '5'}
+                            ,{name: '保洁员b',alias: 'bb',id: '5'}
+                            ]                        
+                        }]
+                    }
+                    ,{name: '石井河支流横江水',alias: 'cc',spread:true,id: '10',children: [
+                        {name: '区河长',alias: 'aa',id: '1'}
+                        ,{name: '巡查员a',alias: 'aa',id: '5'}
+                        ,{name: '泗纶镇段',alias: 'bb',id: '5',spread:true,children: [
+                            {name: '镇河长',alias: 'aa',id: '1'}
+                            ,{name: '保洁员a',alias: 'aa',id: '5'}
+                            ,{name: '保洁员b',alias: 'bb',id: '5'}
+                            ]                        
+                        }]
+                    }
                     ]
                   }, {
                     name: '增埗河'
@@ -191,7 +204,7 @@ define(["dojo/_base/declare",
                         $.get('./js/modules/workTogether/workTogetherProcs.html', null, function(divcont) {
                             self.addWorkProcess = layer.open({
                                 type: 1,
-                                title: playerList.name+'工作进度与人员添加',
+                                title: playerList.name+'工作进度',
                                 content: divcont,
                                 btn: [],
                                 fixed:true,
@@ -228,7 +241,7 @@ define(["dojo/_base/declare",
                                           clearInterval(timer);
                                         }
                                         element.progress('demo1', n+'%');
-                                    }, 300+Math.random()*10000);
+                                    }, 300+Math.random()*20000);
                                 },
                                 cancel: function(index, layero){ 
                                     console.log(layero);

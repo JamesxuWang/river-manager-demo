@@ -86,7 +86,7 @@ require([
     new analyzeSum(map,config.analyzeSum);
 
 
-    EventBus.emit('riverManager'); 
+    EventBus.emit('workTogether'); 
 
     /*添加比例尺控件*/
     bundle.widgets.scalebar.mi = "英里";

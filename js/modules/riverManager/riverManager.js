@@ -139,7 +139,7 @@ define([
                     form.render();    
                     //监听提交
                     form.on('submit(rivermanager-search-bt)', function(data) {
-                        // console.log(data);
+                        // 防止表单跳转
                         setTimeout(function(){
                            self.dataDemo(data); 
                         }, 0);      
