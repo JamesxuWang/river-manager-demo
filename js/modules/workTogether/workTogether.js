@@ -204,7 +204,8 @@ define(["dojo/_base/declare",
                                 success: function(layero, index) {                          
                                     //图表
                                     form.render();
-                                    element.render('progress');  
+                                    element.render('progress'); 
+                                    $('#workP').next('.layui-layer-setwin').prepend('<span class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">&#x1002;</span>')
                                     $('.workp-wrap').on('click', '.workp-add-show', function(event) {
                                         event.preventDefault();
                                         $('.wrap-process').addClass('hide');
@@ -214,7 +215,20 @@ define(["dojo/_base/declare",
                                         event.preventDefault();
                                         $('.wrap-process').removeClass('hide');
                                         $('.workp-add').addClass('hide');         
-                                    }); 
+                                    });
+                                    setTimeout(function(){
+                                       element.progress('demo3', '82%');
+                                    },2000) 
+                                    //模拟loading
+                                    var n = 37,
+                                    timer = setInterval(function(){
+                                        n = n + Math.random()*10|0;  
+                                        if(n>100){
+                                          n = 100;
+                                          clearInterval(timer);
+                                        }
+                                        element.progress('demo1', n+'%');
+                                    }, 300+Math.random()*10000);
                                 },
                                 cancel: function(index, layero){ 
                                     console.log(layero);

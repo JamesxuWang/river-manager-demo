@@ -1,0 +1,89 @@
+<div class="analyze-wrap">
+    <form class="layui-form" action="">
+      <div class="layui-form-item">
+        <div class="layui-inline">
+          <label class="layui-form-label">区县</label>
+          <div class="layui-input-inline">
+            <select name="interest" lay-filter="aihao">
+                <option value="0">白云区</option>
+                <option value="1">荔湾区</option>
+                <option value="1">南沙区</option>
+                <option value="1">番禺区</option>
+                <option value="1">海珠区</option>
+            </select>
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label">河道</label>
+          <div class="layui-input-inline">
+            <select name="interest" lay-filter="aihao">
+                <option value="0">石井河</option>
+                <option value="1">增埗河</option>
+                <option value="1">西航道支线</option>
+            </select>
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label">河段</label>
+          <div class="layui-input-inline">
+            <select name="interest" lay-filter="aihao">
+                <option value="0">河源</option>
+                <option value="1">上游</option>
+                <option value="1">中游</option>
+                <option value="1">下游</option>
+                <option value="1">河口</option>
+            </select>
+          </div>
+        </div>
+        <div class="layui-inline">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-theme" data-type="reload">搜索</button>
+                <button class="layui-btn">导出</button>
+            </div>
+        </div>
+      </div>
+    </form>
+    <div class="analyze-canvas-div">
+        <div class="echarts-canvas" id="echartsCanvas""></div>
+    </div>
+</div>
+<style>
+.analyze-wrap {
+    height: 97%;
+    box-sizing: border-box;
+    position: relative;
+    width: 97%
+}
+.analyze-wrap .layui-form{
+  margin-top: 10px;
+}
+.analyze-wrap .layui-form .layui-form-item {
+    margin-bottom: 7px;
+}
+.analyze-wrap .layui-form .layui-form-label {
+    width: 30px;
+    padding: 9px 10px;
+}
+
+.analyze-wrap .layui-btn-container{
+    padding-left: 20px;
+}
+.analyze-wrap .analyze-canvas-div{
+  position: absolute;
+  top: 70px;
+  bottom: 0px;
+  width: 100%;
+}
+.analyze-wrap .analyze-canvas-div .echarts-canvas{
+  width: 100%;
+  height: 100%;
+}
+@media screen and (max-width:1467px){
+    .analyze-wrap .layui-form-item .layui-input-inline {
+         width: 120px;
+    }
+    .analyze-wrap .layui-form-item {
+        margin-bottom: 5px;
+    }
+}
+</style>

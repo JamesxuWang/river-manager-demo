@@ -5,12 +5,18 @@
     </ul>
     <div class="river-manager-search">
         <div class="layui-row">
-          <div class="layui-col-md6">
+          <div class="layui-col-md4">
+            <select name="ssqy" lay-filter="ssqy">
+                <option value="0">镇级</option>
+                <option value="1">(县)区级</option>
+                <option value="2">流域级</option>
+              </select>
+          </div>
+          <div class="layui-col-md4">
             <input type="text" name="YHDMC"  placeholder="请输入河长或河流名称" autocomplete="off" class="layui-input">
           </div>
-          <div class="layui-col-md6" style="text-align: right;">
-              <button class="layui-btn layui-btn-theme" lay-submit="" lay-filter="river-search-bt">搜索</button> 
-              <button class="layui-btn river-add-bt"><em class="layui-icon">&#xe654;</em></button>
+          <div class="layui-col-md4" style="text-align: right;">
+              <button class="layui-btn layui-btn-theme" lay-submit="" lay-filter="river-search-bt">搜索</button>
           </div>
         </div>  
     </div>
@@ -120,26 +126,20 @@
             </div>
           </div>
           <div class="layui-form-item">
-            <label class="layui-form-label">河湖点等级</label>
+            <label class="layui-form-label">所属河流目录</label>
             <div class="layui-input-block">
-              <input type="radio" name="dzgrade" value="1" title="等级一" checked="">
-              <input type="radio" name="dzgrade" value="2" title="等级二">
-              <input type="radio" name="dzgrade" value="3" title="等级三">
+              <select name="ssqy" lay-filter="ssqy">
+                <option value="0" selected>根目录</option>
+                <option value="1">西航道</option>
+                <option value="1">石井河</option>
+                <option value="1">增埗河</option>
+              </select>
             </div>
           </div>
-          <div class="layui-form-item" style="text-align: center;">
-            <div class="layui-row">
-                <div class="layui-col-md8" style="text-align: right;height: 50px;">
-                    <div class="span-x">
-                        当前X坐标:
-                        <input type="text" class="layui-input-x" value="112.33368"></div>  
-                    <div class="span-y">
-                        当前X坐标:
-                        <input type="text" class="layui-input-x" value="36.23783"></div>
-                </div>
-                <div class="layui-col-md4" style="text-align: left;height: 50px;line-height: 50px">
-                    <em class="layui-icon river-manager-draw" type='POINT' style="font-size: 30px; color: #1E9FFF;cursor: pointer;">&#xe617;</em>
-                </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">添加河流段落</label>
+            <div class="layui-input-block">
+              <em class="layui-icon river-manager-draw" type='POINT' style="font-size: 30px; color: #1E9FFF;cursor: pointer;">&#xe62c;</em>
             </div>
           </div>
           <div class="layui-form-item" style="text-align: center;">
@@ -257,12 +257,11 @@
 .river-manager-search .layui-form-item{
     margin-bottom: 5px;
 }
-.river-manager-search .layui-form-label{
-    width: 75px;   
-    padding: 9px 10px;
+.river-add-content .layui-form-label{
+    width: 105px;   
 }
-.river-manager-search .layui-input-block {
-    margin-left: 100px;
+.river-add-content .layui-input-block {
+    margin-left: 130px;
 }
 .river-manager-search .layui-form-checked span, .layui-form-checked:hover span {
     background-color: #6665e5;

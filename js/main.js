@@ -26,6 +26,7 @@ require([
     "modules/mediaShow/mediaShow",
     "modules/workTogether/workTogether",
     "modules/supervAssess/supervAssess",
+    "modules/analyzeSum/analyzeSum",
     "dojo/NodeList-traverse",
     "dojo/domReady!"
   ],
@@ -55,7 +56,9 @@ require([
     layInit,
     riverManager,
     mediaShow,
-    workTogether
+    workTogether,
+    supervAssess,
+    analyzeSum
   ) {
 
     esriConfig.defaults.io.proxyUrl = config.proxyUrl;
@@ -80,9 +83,10 @@ require([
     new workTogether(map,config.workTogether);
 
     new supervAssess(map,config.supervAssess);
+    new analyzeSum(map,config.analyzeSum);
 
 
-    EventBus.emit('mediaShow'); 
+    EventBus.emit('riverManager'); 
 
     /*添加比例尺控件*/
     bundle.widgets.scalebar.mi = "英里";

@@ -84,6 +84,7 @@ define(["dojo/_base/declare",
                     {name: '视频点a',alias: 'aa',id: '1'}
                     ,{name: '视频点b',alias: 'bb',id: '2'}
                     ,{name: '视频点c',alias: 'cc',id: '3'}
+                    ,{name: '视频点d',alias: 'dd',id: '4'}
                     ]
                   }, {
                     name: '增埗河'
@@ -145,7 +146,10 @@ define(["dojo/_base/declare",
                      ,layer = layui.layer
                     ,form = layui.form;
 
-                      if(self.addBoxIndex !== -1) return;
+                      if(self.addBoxIndex !== -1){
+                        $('#playerV').parent().remove();
+                        self.addBoxIndex = -1;
+                      }
                       $.get('./js/modules/mediaShow/mediaShowVideo.html', function(data) {
                         self.addBoxIndex = layer.open({
                             type: 1,
@@ -256,9 +260,12 @@ define(["dojo/_base/declare",
 
             },
             bindEvent: function() {
-              $('#playerV').off('click').on('click','.layui-btn-theme',function(){
+              $('#playerV .layui-btn-theme').on('click',function(){
                 $('#playerV .player-form-box').removeClass('hide');
               })
+              $('#playerV .layui-btn-primary').on('click',function(){
+                $('#playerV .player-form-box').addClass('hide');
+              })              
             },
             close: function() {
                 if (this.meaSpaceLayer) {

@@ -152,7 +152,7 @@ define([], function() {
         }]
     };
 
-    // 河湖的概要情况
+    // 河湖概要
     data.obj4 = {
         title: {
             text: '河湖概要',
@@ -238,7 +238,7 @@ define([], function() {
         ]
     };
 
-    // 河道常见问题
+    // 河湖常见问题
     data.obj5 = {
         title: {
             text: '河道问题',
@@ -290,6 +290,58 @@ define([], function() {
                 }
             }
         }]
+    };
+    data.obj6 = {
+        title : {
+            text: '降雨情况统计',
+            subtext: '',
+            textStyle: {
+                fontSize: 16,
+                fontWeight: 'bold'
+            },
+            left: 10,
+            top: 10
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            top: 40,
+            left: 'center',
+            data: ['小雨','中雨','大雨','暴雨','大暴雨','特大暴雨']
+        },
+        backgroundColor: '#fff',
+        series : [
+            {
+                name: '雨量等级',
+                type: 'pie',
+                radius : '55%',
+                center: ['50%', '65%'],
+                data: [
+                    {name: "小雨", value: 20, itemStyle: {normal: {color: '#6665E5'}}},
+                    {name: "中雨", value: 5, itemStyle: {normal: {color: '#3CD2D0'}}},
+                    {name: "大雨", value: 20, itemStyle: {normal: {color: '#F7BF1F'}}},
+                    {name: "暴雨", value: 5, itemStyle: {normal: {color: '#546570'}}},
+                    {name: "大暴雨", value: 20, itemStyle: {normal: {color: '#c23531'}}},
+                    {name: "特大暴雨", value: 5, itemStyle: {normal: {color: '#d48265'}}}
+                ],
+                itemStyle: {
+                    normal: {
+                        label:{
+                            show: true,
+                            position:'outer',
+                            formatter: "{d}%"
+                        }
+                    },
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
     };
 
     data.table = [

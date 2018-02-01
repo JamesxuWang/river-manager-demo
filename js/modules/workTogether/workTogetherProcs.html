@@ -1,50 +1,72 @@
 <div class="workp-wrap">
 	<div class="wrap-process">
 	    <div class="workp-wrap-box">
-	        <label for="">巡查员a(进行中)</label>
+	        <div class="workp-progress-title">
+	    		<label for="">巡查员a(进行中)</label>
+	    		<button class="layui-btn layui-btn-theme layui-btn-xs">查看位置</button>
+	    	</div>
 	        <div class="layui-progress layui-progress-big" lay-showPercent="true" lay-filter="demo1">
-	          <div class="layui-progress-bar" lay-percent="23%"></div>
+	          <div class="layui-progress-bar layui-bg-orange" lay-percent="23%"></div>
 	        </div>
 	    </div>
-	    </div><div class="workp-wrap-box">
-	        <label for="">河段长a(未开始)</label>
+	    <div class="workp-wrap-box">
+	        <div class="workp-progress-title">
+	    		<label for="">河段长a(未开始)</label>
+	    		<!-- <button class="layui-btn layui-btn-theme layui-btn-xs"></button> -->
+	    	</div>
 	        <div class="layui-progress layui-progress-big" lay-showPercent="true" lay-filter="demo2">
 	          <div class="layui-progress-bar" lay-percent="0%"></div>
 	        </div>
 	    </div>
 	    <div class="workp-wrap-box">
-	        <label for="">河段长b(未开始)</label>
+	        <div class="workp-progress-title">
+	    		<label for="">河段长b(未开始)</label>
+	    		<button class="layui-btn layui-btn-primary layui-btn-xs layui-btn-disabled">已调休</button>
+	    	</div>
 	        <div class="layui-progress layui-progress-big" lay-showPercent="true" lay-filter="demo2">
 	          <div class="layui-progress-bar" lay-percent="0%"></div>
 	        </div>
 	    </div>
 	    <div class="workp-wrap-box">
-	        <label for="">河段长c(未开始)</label>
+	        <div class="workp-progress-title">
+	    		<label for="">河段长c(未开始)</label>
+	    		<button class="layui-btn layui-btn-primary layui-btn-xs layui-btn-disabled">已请假</button>
+	    	</div>
 	        <div class="layui-progress layui-progress-big" lay-showPercent="true" lay-filter="demo2">
 	          <div class="layui-progress-bar" lay-percent="0%"></div>
 	        </div>
 	    </div>
 	    <div class="workp-wrap-box">
-	        <label for="">保洁员a(已完成)</label>
+	        <div class="workp-progress-title">
+	    		<label for="">保洁员a(已完成)</label>
+	    		<button class="layui-btn layui-btn-theme layui-btn-xs">查看轨迹</button>
+	    	</div>
 	        <div class="layui-progress layui-progress-big" lay-showPercent="true" lay-filter="demo2">
-	          <div class="layui-progress-bar layui-bg-orange" lay-percent="100%"></div>
+	          <div class="layui-progress-bar" lay-percent="100%"></div>
 	        </div>
 	    </div>
 	    <div class="workp-wrap-box">
-	        <label for="">保洁员b(进行中)</label>
-	        <div class="layui-progress layui-progress-big" lay-showPercent="true" lay-filter="demo2">
-	          <div class="layui-progress-bar" lay-percent="97%"></div>
+	        <div class="workp-progress-title">
+	    		<label for="">保洁员b(进行中)</label>
+	    		<button class="layui-btn layui-btn-theme layui-btn-xs">查看位置</button>
+	    	</div>
+	        <div class="layui-progress layui-progress-big" lay-showPercent="true" lay-filter="demo3">
+	          <div class="layui-progress-bar layui-bg-orange" lay-percent="77%"></div>
 	        </div>
 	    </div>
 	    <div class="workp-wrap-box">
-	        <label for="">保洁员c(已完成)</label>
+	    	<div class="workp-progress-title">
+	    		<label for="">保洁员c(已完成)</label>
+	    		<button class="layui-btn layui-btn-theme layui-btn-xs">查看轨迹</button>
+	    	</div>
 	        <div class="layui-progress layui-progress-big" lay-showPercent="true" lay-filter="demo2">
-	          <div class="layui-progress-bar layui-bg-orange" lay-percent="100%"></div>
+	          <div class="layui-progress-bar" lay-percent="100%"></div>
 	        </div>
 	    </div>
 	    <div class="workp-wrap-box"  style="margin-top:20px">
-	        <button class="layui-btn workp-add-show" lay-filter="workp-add-show">添加成员</button>
-	        <button class="layui-btn layui-btn-theme workp-add-show" lay-filter="workp-add-show">轨迹上传列表</button>
+	        <button class="layui-btn layui-btn-theme workp-add-show" lay-filter="workp-add-show">添加成员</button>
+	        <button class="layui-btn workp-add-show layui-btn-danger" lay-filter="workp-add-show">删除成员</button>	   	        
+	        <!-- <button class="layui-btn layui-btn-theme workp-add-show" lay-filter="workp-add-show">本日轨迹列表</button> -->
 	        	      <!--另开一张可搜索的大表 带时间记录和 轨迹和时间和图片文字  -->
 	    </div>
     </div>
@@ -55,11 +77,11 @@
 	            padding: 4px 5px;
 	            border-radius: 3px;
 	        ">
-	        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+	        <fieldset class="layui-elem-field layui-field-title" style="margin: 0 0 10px 0;">
 	          <legend>添加成员</legend>
 	        </fieldset>
 	        <form class="layui-form workp-add-form" style="
-	              border: 1px solid #120d58;
+	              /*border: 1px solid #120d58;*/
 	              padding: 20px 5px;
 	              border-radius: 3px;
 	          ">
@@ -114,6 +136,11 @@
     box-sizing: border-box;
 }
 .workp-wrap .workp-wrap-box{
-	margin-bottom: 10px;
+	margin-bottom: 18px;
+}
+.workp-wrap .workp-progress-title .layui-btn{
+    float: right;
+    margin-right: 20px;
+    margin-top: -4px;
 }
 </style>

@@ -20,9 +20,10 @@
           <label class="layui-form-label">所属河段:</label>
           <div class="layui-input-block">
               <select name="QX" lay-verify="required" lay-filter="QX">
-                  <option value="">石井河</option>
+                  <option value=""></option>
                   <option value="0">增埗河</option>
                   <option value="1">西航道支线</option>
+                  <option value="2">石井河</option>
               </select>
           </div>
         </div>
@@ -30,9 +31,10 @@
           <label class="layui-form-label">推送人员:</label>
           <div class="layui-input-block">
               <select name="QX" lay-verify="required" lay-filter="QX">
-                  <option value="">河长办公室</option>
-                  <option value="0">总河长</option>
-                  <option value="1">副总河长</option>
+                  <option value=""></option>
+                  <option value="1">河长办公室</option>
+                  <option value="2">总河长</option>
+                  <option value="3">副总河长</option>
               </select>
           </div>
         </div>
@@ -56,7 +58,7 @@
 }
 .player-form-box{
     position: absolute;
-    top: 76px;
+    top: 10%;
     left: 30%;
     background: #fff;
     padding: 20px 30px;

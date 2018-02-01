@@ -253,7 +253,7 @@ define([
         contentInit: function(attributes) {
             var self = this               
             ,mapHeight = $('.container').height()       
-            ,tableLimit = Math.floor((mapHeight-300-80)/40); 
+            ,tableLimit = Math.floor((mapHeight-350-80)/40); 
             layui.use(['layer','form'],function() {
                 var form = layui.form
                 ,layer = layui.layer;
