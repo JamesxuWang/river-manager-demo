@@ -76,8 +76,6 @@ require([
     new yingyan(map); /*鹰眼模块*/
     new Copyright(map, config.Copyright);/*版权控件*/
 
-    // //菜单控制
-    new layInit(map,config.layui);    /*layui初始化*/
     new riverManager(map,config.riverManager);
     new mediaShow(map,config.mediaShow);
     new workTogether(map,config.workTogether);
@@ -85,8 +83,10 @@ require([
     new supervAssess(map,config.supervAssess);
     new analyzeSum(map,config.analyzeSum);
 
+    //菜单控制
+    var moduleBegin = new layInit(map,config.layui);    /*layui初始化*/
+    moduleBegin.runMoudle('workTogether');//运行第一个模块
 
-    EventBus.emit('workTogether'); 
 
     /*添加比例尺控件*/
     bundle.widgets.scalebar.mi = "英里";
@@ -103,8 +103,8 @@ require([
     var copyright = new Copyright(map, config.Copyright);
     copyright.startup();
 
-    layui.use('element', function(){
-      var element = layui.element;
-    });
+    // layui.use(['element','tree'], function(){
+    //   var element = layui.element;
+    // });
 
   });

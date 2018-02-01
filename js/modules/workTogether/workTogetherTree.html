@@ -12,8 +12,17 @@
 <style>
 .wrap {
     width: 100%;
+		position: relative;
+		height: 100%;
 }
-.site-doc-bgcolor li {
+.wrap .site-doc-bgcolor{
+	position: absolute;
+	top: 70px;
+	bottom: 0;
+	width: 100%;
+	overflow-y: auto;
+}
+.wrap .site-doc-bgcolor li {
     padding: 5px;
     position: relative;
 }
@@ -24,13 +33,13 @@
 .work-together .tree-icon-sp{
 	position: absolute;
 	right: 30px;
-	top: 14px;
-} 
+	top: 10px;
+}
 .work-together .tree-icon-sp .layui-icon{
 	color: #120d58;
 	font-size: 20px;
 	cursor: pointer;
-}  
+}
 .work-together .tree-icon-ls{
   position: absolute;
   right: 30px;
@@ -41,5 +50,5 @@
   color: #120d58;
   font-size: 24px;
   cursor: pointer;
-}  
+}
 </style>

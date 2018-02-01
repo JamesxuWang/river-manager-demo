@@ -45,7 +45,7 @@ define(["dojo/_base/declare",
             constructor: function(map, config) {
                 this.map = map;
                 this.config = config;
-                this.demoData = dataDemo; 
+                this.demoData = dataDemo;
                 this.addBoxIndex = null;
                 this.myChart = null;
                 this.chartType = null;
@@ -73,7 +73,7 @@ define(["dojo/_base/declare",
             initHtml: function(dataObj) {
                 var self = this;
                 $.get('./js/modules/analyzeSum/analyzeSumTab.html', function(data) {
-                    $('.analyze-sum').html(data);
+                    $('.analyze-sum').html(data).removeClass('hide');
                     self.initTab();
                 });
             },
@@ -142,9 +142,9 @@ define(["dojo/_base/declare",
             initChart: function() {
                 // 指定图表的配置项和数据
                 var self = this;
-                if (self.myChart != null && self.myChart != "" && self.myChart != undefined) {  
-                    self.myChart.dispose();  
-                }  
+                if (self.myChart != null && self.myChart != "" && self.myChart != undefined) {
+                    self.myChart.dispose();
+                }
                 self.myChart = echarts.init(document.getElementById('echartsCanvas'));
                 var option = self.demoData[self.chartType];
                 self.myChart.setOption(option);

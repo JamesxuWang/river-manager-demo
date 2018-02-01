@@ -69,7 +69,7 @@ define(["dojo/_base/declare",
                 var self = this
 
                 $.get('./js/modules/mediaShow/mediaShowTree.html', function(data) {
-                    $('.media-video').html(data);
+                    $('.media-video').html(data).removeClass('hide');
                     self.initTree();
 
                 });
@@ -265,7 +265,7 @@ define(["dojo/_base/declare",
               })
               $('#playerV .layui-btn-primary').on('click',function(){
                 $('#playerV .player-form-box').addClass('hide');
-              })              
+              })
             },
             close: function() {
                 if (this.meaSpaceLayer) {

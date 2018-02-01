@@ -43,7 +43,7 @@ define(["dojo/_base/declare",
             constructor: function(map, config) {
                 this.map = map;
                 this.config = config;
-                this.demoData = dataDemo.table; 
+                this.demoData = dataDemo.table;
                 this.addBoxIndex = null;
                 this.init();
             },
@@ -67,7 +67,7 @@ define(["dojo/_base/declare",
             initHtml: function(dataObj) {
                 var self = this;
                 $.get('./js/modules/supervAssess/supervAssessTab.html', function(data) {
-                    $('.superv-assess').html(data);
+                    $('.superv-assess').html(data).removeClass('hide');
                     self.initTab();
                 });
             },
@@ -142,7 +142,7 @@ define(["dojo/_base/declare",
             },
             initForm: function() {
                 var self = this
-                ,mapHeight = $('.container').height()       
+                ,mapHeight = $('.container').height()
                 ,tableLimit = Math.floor((mapHeight-205-80)/40);
                 layui.use('layer', function() {
                     var table = layui.table;
