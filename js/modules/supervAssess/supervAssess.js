@@ -144,7 +144,7 @@ define(["dojo/_base/declare",
                 var self = this
                 ,mapHeight = $('.container').height()
                 ,tableLimit = Math.floor((mapHeight-205-80)/40);
-                layui.use('layer', function() {
+                layui.use('table', function() {
                     var table = layui.table;
                     table.render({
                         elem: '#supervATable'

@@ -27,6 +27,7 @@ require([
     "modules/workTogether/workTogether",
     "modules/supervAssess/supervAssess",
     "modules/analyzeSum/analyzeSum",
+    "modules/dailyManage/dailyManage",
     "dojo/NodeList-traverse",
     "dojo/domReady!"
   ],
@@ -58,7 +59,8 @@ require([
     mediaShow,
     workTogether,
     supervAssess,
-    analyzeSum
+    analyzeSum,
+    dailyManage
   ) {
 
     esriConfig.defaults.io.proxyUrl = config.proxyUrl;
@@ -82,10 +84,12 @@ require([
 
     new supervAssess(map,config.supervAssess);
     new analyzeSum(map,config.analyzeSum);
+    new dailyManage(map,config.dailyManage);
+    
 
     //菜单控制
     var moduleBegin = new layInit(map,config.layui);    /*layui初始化*/
-    moduleBegin.runMoudle('workTogether');//运行第一个模块
+    moduleBegin.runMoudle('dailyManage');//运行第一个模块
 
 
     /*添加比例尺控件*/
@@ -102,9 +106,5 @@ require([
     /*版权控件*/
     var copyright = new Copyright(map, config.Copyright);
     copyright.startup();
-
-    // layui.use(['element','tree'], function(){
-    //   var element = layui.element;
-    // });
 
   });

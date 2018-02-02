@@ -1,0 +1,111 @@
+<div class="daily-wrap">
+    <div class="layui-form">
+      <div class="layui-form-item daily-search">
+        <div class="layui-inline" style="width: 80%">
+          <label class="layui-form-label">信息分类：</label>
+          <div class="layui-input-inline">
+            <span class="daily-search-type">全部 </span>
+            <span class="daily-search-type">河湖新闻 <span class="layui-badge-rim">15</span></span>
+            <span class="daily-search-type">通知公告 <span class="layui-badge-rim">23</span></span>
+            <span class="daily-search-type">河长信箱 <span class="layui-badge-rim">31</span></span>
+          </div>
+        </div>
+        <div class="layui-inline" style="width: 10%">
+            <input type="text" name="YHDMC"  placeholder="" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-inline">
+            <button class="layui-btn layui-btn-theme" data-type="reload">搜索</button>
+        </div>
+      </div>
+      <div class="layui-form-item daily-content">
+        <div class="layui-inline">
+          <label class="layui-form-label"><span class="layui-badge-dot layui-bg-theme"></span>1</label>
+          <div class="layui-input-inline"> 2017-10-10 </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label"><span class="layui-badge-dot layui-bg-theme"></span>1</label>
+          <div class="layui-input-inline"> 2017-10-10 </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label"><span class="layui-badge-dot layui-bg-theme"></span>1</label>
+          <div class="layui-input-inline"> 2017-10-10 </div>
+        </div>
+      </div>
+    </div>
+    <div class="daily-pager layui-form-item">
+      <div id="daily-pager-div"></div>
+    </div>
+</div>
+<style>
+.daily-wrap {
+    height: 97%;
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    padding: 20px 30px;
+}
+.daily-wrap .layui-form{
+    margin-top: 10px;
+}
+.daily-wrap .daily-search{
+    padding-top: 6px;
+    background: #f0f0f0;
+    margin-bottom: 20px;
+}
+.daily-wrap .daily-search .layui-form-item {
+    margin-bottom: 7px;
+}
+.daily-wrap .daily-search .layui-form-label {
+    width: 94px;
+    padding: 9px 10px;
+    font-size: 17px;
+}
+.daily-wrap .daily-search .layui-input-inline{
+    padding: 10px 9px;
+    width: 640px;
+    color: #120d58;
+}
+.daily-wrap .daily-search .daily-search-type{
+  margin-right: 15px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+.daily-wrap .daily-search .daily-search-type:hover{
+  background-color: #fff;
+  color: #6665e5;
+  border-radius: 5px;
+}
+.daily-wrap .daily-search .daily-search-type:hover .layui-badge-rim{
+  background-color: #120d58;
+  color: #fff;
+}
+.daily-wrap .daily-content{
+  background-color: #f0f0f0;
+    padding-bottom: 30px;
+}
+.daily-wrap .daily-content .layui-inline{
+    width: 96%;
+    margin-bottom: 0;
+    border-bottom: 1px dashed #;
+    margin-left: 2%;
+}
+.daily-wrap .daily-content .layui-form-label{
+  width: 80%;
+  text-align: left;
+  padding: 19px 0;
+  cursor: pointer;
+}
+.daily-wrap .daily-content .layui-form-label:hover{
+  color: #6665e5;
+}
+.daily-wrap .daily-content .layui-bg-theme{
+  margin-right: 10px;
+  background-color: #120d58!important;
+}
+.daily-wrap .daily-content .layui-input-inline{
+  width: 20%;
+  padding: 19px 0;
+  margin: 0;
+  text-align: right;
+}
+</style>

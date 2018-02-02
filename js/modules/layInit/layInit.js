@@ -16,7 +16,7 @@ define(["dojo/_base/declare", "echo/utils/EventBus", "dojo/domReady!"], function
             var self = this;
             var device = layui.device('myapp');
             console.log(device);
-            layui.use(['element','tree'], function(){
+            layui.use('element', function(){
 		        var element_nav = layui.element;
                 element_nav.on('nav(runMoudle)', function(elem){
                   // console.log(elem); //得到当前点击的DOM对象

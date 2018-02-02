@@ -72,6 +72,8 @@ define([
                         new Color([255, 0, 0]), 2),
                     new Color([102, 195, 233, 0.2])
                 );
+            var layer = new ArcGISDynamicMapServiceLayer('http://112.94.224.230:8081/arcgis/rest/services/HZZ/RIVER/MapServer');
+            this.map.addLayer(layer);           
             this.bindEvent();
 
         },
@@ -203,9 +205,9 @@ define([
                             </div>
                         </div>
                         <div class="panel-body">
-                            上呗河流 ：松花江上
+                            水质 ：${feat['sz']||'良'}
                             <hr>
-                            河流长度 ：1041KM
+                            水质目标 ${feat['szmb']}
                         </div>
                     </div>
                 </li>`

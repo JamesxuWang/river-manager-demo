@@ -89,6 +89,7 @@ define(["dojo/_base/declare",
                 var data = [{ //节点数据
                     name: '石井河'
                     ,spread:true
+                    ,type:'process'
                     ,children: [
                     {name: '总河长',alias: 'aa',id: '1'}
                     ,{name: '副总河长',alias: 'aa',id: '2'}
@@ -96,10 +97,10 @@ define(["dojo/_base/declare",
                     ,{name: '督察员',alias: 'aa',id: '4'}
                     ,{name: '石井河干流',alias: 'cc',spread:true,id: '10',children: [
                         {name: '区河长',alias: 'aa',id: '1'}
-                        ,{name: '巡查员a',alias: 'aa',id: '5'}
+                        ,{name: '巡查员a',alias: 'aa',id: '5','type':'road'}
                         ,{name: '龙湾镇段',alias: 'bb',id: '5',spread:true,children: [
                             {name: '镇河长',alias: 'aa',id: '1'}
-                            ,{name: '保洁员a',alias: 'aa',id: '5'}
+                            ,{name: '保洁员a',alias: 'aa',id: '5','type':'road'}
                             ,{name: '保洁员b',alias: 'bb',id: '5'}
                             ]
                         }]
@@ -141,24 +142,26 @@ define(["dojo/_base/declare",
                     ]
                 }]
 
-                // $.get(self.config.findList, function(data) {
-                  // console.log(data);
-                layui.use('tree', function(){
-                   layui.tree({
+                layui.config({
+                    base: './js/modules/layInit/'
+                }).use('layTree', function() {
+                    layui.layTree({
                       elem: '#workTree'
                       ,skin: 'shihuang'
                       ,nodes: data
                       ,click: function(node){
-                             // console.log(node)
                          self.centerAtOrPlayer(node)
                       }
                    });
                 })
+
+
+
                 setTimeout(function(){
                    // 一级菜单
-                   $('#workTree>li').append('<span class="tree-icon-ls" title="工作进度与人员添加"><em class="layui-icon">&#xe63c;</em> </span>');
+                   $('#workTree').find('li[data-type="process"]').append('<span class="tree-icon-ls" title="工作进度查看"><em class="layui-icon">&#xe63c;</em> </span>');
                   // 二级菜单
-                   $('#workTree>li>ul>li').append('<span class="tree-icon-sp" title="路线管理"><em class="layui-icon">&#xe609;</em> </span>');
+                   $('#workTree').find('li[data-type="road"]').append('<span class="tree-icon-sp" title="路线管理"><em class="layui-icon">&#xe609;</em> </span>');
                    $('#workTree').on('click','.tree-icon-sp',function(){
                         $(this).siblings('a').find('cite').click();
                    });
@@ -172,17 +175,17 @@ define(["dojo/_base/declare",
                 var playerList = {};
                 playerList.list = [];
                 playerList.name = node.name;
-                if(node.alias){
+                if(node.type==="road"){
                     playerList.list.push(node.id);
                     this.workContent(playerList)
-                }else{
+                }else if(node.type==="process"){
                     var list = node.children;
                     for (var i = 0; i < list.length; i++) {
                         playerList.list.push(list[i].id)
                     }
                     this.workProcess(playerList);
                 }
-                console.log(playerList);
+                // console.log(playerList);
             },
             // 路线进度
             workProcess: function(playerList){
@@ -197,61 +200,60 @@ define(["dojo/_base/declare",
                        layer.close(self.addBoxIndex);
                     }
                     if(self.addWorkProcess !== -1){
-                       // $('.river-content-name').html(name);
-                       console.log('sss')
-                    }else{
-                        //本表单通过ajax加载 --以模板的形式，当然你也可以直接写在页面上读取
-                        $.get('./js/modules/workTogether/workTogetherProcs.html', null, function(divcont) {
-                            self.addWorkProcess = layer.open({
-                                type: 1,
-                                title: playerList.name+'工作进度',
-                                content: divcont,
-                                btn: [],
-                                fixed:true,
-                                shade: false,
-                                offset: ['60px','340px'],
-                                area: '400px',
-                                id:'workP',
-                                zIndex: 1995,
-                                maxmin: false,
-                                success: function(layero, index) {
-                                    //图表
-                                    form.render();
-                                    element.render('progress');
-                                    $('#workP').next('.layui-layer-setwin').prepend('<span class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">&#x1002;</span>')
-                                    $('.workp-wrap').on('click', '.workp-add-show', function(event) {
-                                        event.preventDefault();
-                                        $('.wrap-process').addClass('hide');
-                                        $('.workp-add').removeClass('hide');
-                                    });
-                                    $('.workp-wrap').on('click', '.workp-add-back', function(event) {
-                                        event.preventDefault();
-                                        $('.wrap-process').removeClass('hide');
-                                        $('.workp-add').addClass('hide');
-                                    });
-                                    setTimeout(function(){
-                                       element.progress('demo3', '82%');
-                                    },2000)
-                                    //模拟loading
-                                    var n = 37,
-                                    timer = setInterval(function(){
-                                        n = n + Math.random()*10|0;
-                                        if(n>100){
-                                          n = 100;
-                                          clearInterval(timer);
-                                        }
-                                        element.progress('demo1', n+'%');
-                                    }, 300+Math.random()*20000);
-                                },
-                                cancel: function(index, layero){
-                                    console.log(layero);
-                                },
-                                end: function() {
-                                    self.addWorkProcess = -1;
-                                }
-                            });
-                        });
+                       $('#workP').parent().remove();
+                       this.addWorkProcess = -1
                     }
+                    $.get('./js/modules/workTogether/workTogetherProcs.html', null, function(divcont) {
+                        self.addWorkProcess = layer.open({
+                            type: 1,
+                            title: playerList.name+'工作进度',
+                            content: divcont,
+                            btn: [],
+                            fixed:true,
+                            shade: false,
+                            offset: ['60px','340px'],
+                            area: '400px',
+                            id:'workP',
+                            zIndex: 1995,
+                            maxmin: false,
+                            success: function(layero, index) {
+                                //图表
+                                form.render();
+                                element.render('progress');
+                                $('#workP').next('.layui-layer-setwin').prepend('<span class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">&#x1002;</span>')
+                                $('.workp-wrap').on('click', '.workp-add-show', function(event) {
+                                    event.preventDefault();
+                                    $('.wrap-process').addClass('hide');
+                                    $('.workp-add').removeClass('hide');
+                                });
+                                $('.workp-wrap').on('click', '.workp-add-back', function(event) {
+                                    event.preventDefault();
+                                    $('.wrap-process').removeClass('hide');
+                                    $('.workp-add').addClass('hide');
+                                });
+                                setTimeout(function(){
+                                   element.progress('demo3', '82%');
+                                },2000)
+                                //模拟loading
+                                var n = 37,
+                                timer = setInterval(function(){
+                                    n = n + Math.random()*10|0;
+                                    if(n>100){
+                                      n = 100;
+                                      clearInterval(timer);
+                                    }
+                                    element.progress('demo1', n+'%');
+                                }, 300+Math.random()*20000);
+                            },
+                            cancel: function(index, layero){
+                                console.log(layero);
+                            },
+                            end: function() {
+                                self.addWorkProcess = -1;
+                            }
+                        });
+                    });
+                    
                 })
             },
             // 路线编辑
@@ -266,37 +268,35 @@ define(["dojo/_base/declare",
                        layer.close(self.addWorkProcess);
                     }
                     if(self.addBoxIndex !== -1){
-                       // $('.river-content-name').html(name);
-                       console.log('sss')
-                    }else{
-                        //本表单通过ajax加载 --以模板的形式，当然你也可以直接写在页面上读取
-                        $.get('./js/modules/workTogether/workTogetherInfo.html', null, function(divcont) {
-                            self.addBoxIndex = layer.open({
-                                type: 1,
-                                title: playerList.name+'信息详情',
-                                content: divcont,
-                                btn: [],
-                                fixed:true,
-                                shade: false,
-                                offset: ['60px','340px'],
-                                area: ['400px','560px'],
-                                zIndex: 100,
-                                id: 'workI',
-                                anim: 2,
-                                maxmin: false,
-                                success: function(layero, index) {
-                                    form.render();
-                                    self.initRiverPoint();
-                                },
-                                cancel: function(index, layero){
-                                    console.log(layero);
-                                },
-                                end: function() {
-                                    self.addBoxIndex = -1;
-                                }
-                            });
-                        });
+                       $('#workI').parent().remove();
+                       this.addBoxIndex = -1
                     }
+                    $.get('./js/modules/workTogether/workTogetherInfo.html', null, function(divcont) {
+                        self.addBoxIndex = layer.open({
+                            type: 1,
+                            title: playerList.name+'信息详情',
+                            content: divcont,
+                            btn: [],
+                            fixed:true,
+                            shade: false,
+                            offset: ['60px','340px'],
+                            area: ['400px','560px'],
+                            zIndex: 100,
+                            id: 'workI',
+                            anim: 2,
+                            maxmin: false,
+                            success: function(layero, index) {
+                                form.render();
+                                self.initRiverPoint();
+                            },
+                            cancel: function(index, layero){
+                                console.log(layero);
+                            },
+                            end: function() {
+                                self.addBoxIndex = -1;
+                            }
+                        });
+                    });
                 });
             },
             initRiverPoint: function(){
