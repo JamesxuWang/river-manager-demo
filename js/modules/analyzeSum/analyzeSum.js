@@ -85,7 +85,7 @@ define(["dojo/_base/declare",
                     var layer = layui.layer;
                     //监听导航点击
                     elementd.on('nav(superv-wrap-nav)', function(elem) {
-                        self.chartType = $(elem).attr('echarts-moudle')
+                        self.chartType = $(elem).attr('echarts-moudle');
                         self.centerAtOrPlayer($(elem).text())
                     });
                 });

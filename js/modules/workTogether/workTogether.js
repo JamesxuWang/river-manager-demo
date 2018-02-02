@@ -87,37 +87,50 @@ define(["dojo/_base/declare",
                 var self = this;
 
                 var data = [{ //节点数据
-                    name: '石井河'
+                    name: '泗纶河干流'
                     ,spread:true
-                    ,type:'process'
                     ,children: [
-                    {name: '总河长',alias: 'aa',id: '1'}
-                    ,{name: '副总河长',alias: 'aa',id: '2'}
-                    ,{name: '河长办公室',alias: 'aa',id: '3'}
-                    ,{name: '督察员',alias: 'aa',id: '4'}
-                    ,{name: '石井河干流',alias: 'cc',spread:true,id: '10',children: [
-                        {name: '区河长',alias: 'aa',id: '1'}
-                        ,{name: '巡查员a',alias: 'aa',id: '5','type':'road'}
-                        ,{name: '龙湾镇段',alias: 'bb',id: '5',spread:true,children: [
-                            {name: '镇河长',alias: 'aa',id: '1'}
-                            ,{name: '保洁员a',alias: 'aa',id: '5','type':'road'}
-                            ,{name: '保洁员b',alias: 'bb',id: '5'}
+                        {name: '总河长：黄天生',alias: 'aa',id: '1'},
+                        {name: '泗纶河分段',alias: 'cc',spread:true,id: '10',type:'process',
+                            children: [
+                                {name: '区河长：陈桃',alias: '区河长',id: '2'},
+                                {name: '巡查员：李世勋',alias: '巡查员',type:'road',phone:'18332335452'},
+                                {
+                                    name: '龙湾镇段',alias: 'bb',id: '5',spread:true,
+                                    children: [
+                                        {name: '镇河长：江世彰',phone:'18632837817',alias: '镇河长',id: '1',type:'road'},
+                                        {name: '保洁员：何天心',alias: '保洁员',id: '1',type:'road',phone:'18632332762'}
+                                    ]
+                                },{
+                                    name: '泗纶镇段',alias: 'bb',id: '5',spread:true,
+                                    children: [
+                                        {name: '镇河长：林盛',phone:'18632938828',alias: '镇河长',id: '1',type:'road'},
+                                        {name: '保洁员：李长城',alias: '保洁员',id: '1',type:'road',phone:'18632433773'}
+                                    ]
+                                },{
+                                    name: '连州镇段',alias: 'bb',id: '5',spread:true,
+                                    children: [
+                                        {name: '镇河长：刘彬',phone:'18633039839',alias: '镇河长',id: '1',type:'road'},
+                                        {name: '保洁员：辛婉秀',alias: '保洁员',id: '1',type:'road',phone:'18632534784'}
+                                    ]
+                                },{
+                                    name: '生江镇段',alias: 'bb',id: '5',spread:true,
+                                    children: [
+                                        {name: '镇河长：邓卓宜',phone:'18643140840',alias: '镇河长',id: '1',type:'road'},
+                                        {name: '保洁员：白景同',alias: '保洁员',id: '1',type:'road',phone:'18632635795'}
+                                    ]
+                                },{
+                                    name: '黎少镇段',alias: 'bb',id: '5',spread:true,
+                                    children: [
+                                        {name: '镇河长：欧小平',phone:'18643241851',alias: '镇河长',id: '1',type:'road'},
+                                        {name: '保洁员：钟俊茂',alias: '保洁员',id: '1',type:'road',phone:'18632736806'}
+                                    ]
+                                }
                             ]
-                        }]
-                    }
-                    ,{name: '石井河支流横江水',alias: 'cc',spread:true,id: '10',children: [
-                        {name: '区河长',alias: 'aa',id: '1'}
-                        ,{name: '巡查员a',alias: 'aa',id: '5'}
-                        ,{name: '泗纶镇段',alias: 'bb',id: '5',spread:true,children: [
-                            {name: '镇河长',alias: 'aa',id: '1'}
-                            ,{name: '保洁员a',alias: 'aa',id: '5'}
-                            ,{name: '保洁员b',alias: 'bb',id: '5'}
-                            ]
-                        }]
-                    }
+                        }            
                     ]
                   }, {
-                    name: '增埗河'
+                    name: '泗纶河支流都门水'
                     ,children: [
                     {name: '总河长',alias: 'aa',id: '12'}
                     ,{name: '副总河长',alias: 'aa',id: '13'}
@@ -129,7 +142,7 @@ define(["dojo/_base/declare",
                     ,{name: '河段长a',alias: 'cc',id: '19'}
                     ]
                   }, {
-                    name: '西航道支线'
+                    name: '泗纶河支流都门水和平支流'
                     ,children: [
                     {name: '总河长',alias: 'aa',id: '20'}
                     ,{name: '副总河长',alias: 'aa',id: '21'}
@@ -176,7 +189,7 @@ define(["dojo/_base/declare",
                 playerList.list = [];
                 playerList.name = node.name;
                 if(node.type==="road"){
-                    playerList.list.push(node.id);
+                    playerList.node = node;
                     this.workContent(playerList)
                 }else if(node.type==="process"){
                     var list = node.children;
@@ -287,6 +300,7 @@ define(["dojo/_base/declare",
                             maxmin: false,
                             success: function(layero, index) {
                                 form.render();
+                                self.initContentForm(playerList.node)
                                 self.initRiverPoint();
                             },
                             cancel: function(index, layero){
@@ -297,6 +311,13 @@ define(["dojo/_base/declare",
                             }
                         });
                     });
+                });
+            },
+            initContentForm: function(attributes){
+                var self = this,
+                data = attributes;
+                $.each(data,function(index, el) {
+                    $('#workI .worki-info').find('.layui-input-block[data-name='+index+']').html(el);
                 });
             },
             initRiverPoint: function(){
@@ -319,7 +340,7 @@ define(["dojo/_base/declare",
                     num++;
                 });
                 self.initTable();
-                console.log(self.featuresLoadArr);
+                // console.log(self.featuresLoadArr);
                 self.meaSpaceLayer.on('click',function(evt){
                     self.infoWindowShow(evt.graphic);
                 })

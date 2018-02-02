@@ -43,7 +43,7 @@ define(["dojo/_base/declare",
             constructor: function(map, config) {
                 this.map = map;
                 this.config = config;
-                this.demoData = dataDemo.table;
+                this.demoData = dataDemo;
                 this.addBoxIndex = null;
                 this.init();
             },
@@ -53,6 +53,7 @@ define(["dojo/_base/declare",
             },
             startup: function() {
                 this.addBoxIndex = -1;
+                this.tableType = null;
                 this.meaSpaceLayer = new GraphicsLayer();
                 this.map.addLayer(this.meaSpaceLayer);
                 this.symbol = new SimpleFillSymbol(
@@ -79,9 +80,10 @@ define(["dojo/_base/declare",
                     var layer = layui.layer;
                     //监听导航点击
                     elementd.on('nav(superv-wrap-nav)', function(elem) {
-                        console.log(elem)
-                        layer.msg(elem.text());
-                        self.centerAtOrPlayer(elem.text())
+                        self.tableType = $(elem).attr('table-data');
+                        if(self.tableType){
+                            self.centerAtOrPlayer(elem.text());
+                        }
                     });
                 });
             },
@@ -98,8 +100,9 @@ define(["dojo/_base/declare",
                     var laydate = layui.laydate
                     var form = layui.form;
                     if (self.addBoxIndex !== -1) {
-                        // $('.river-content-name').html(name);
-                        console.log('sss')
+                       // $('.river-content-name').html(name);
+                        $('#supervAssessC').prev('.layui-layer-title').html(nodeName);
+                        self.initForm();
                     } else {
                         //本表单通过ajax加载 --以模板的形式，当然你也可以直接写在页面上读取
                         $.get('./js/modules/supervAssess/supervAssessContent.html', null, function(divcont) {
@@ -129,7 +132,7 @@ define(["dojo/_base/declare",
                                     });
                                 },
                                 cancel: function(index, layero) {
-                                    console.log(layero);
+                                    // console.log(layero);
                                 },
                                 end: function() {
                                     self.addBoxIndex = -1;
@@ -143,56 +146,66 @@ define(["dojo/_base/declare",
             initForm: function() {
                 var self = this
                 ,mapHeight = $('.container').height()
-                ,tableLimit = Math.floor((mapHeight-205-80)/40);
+                ,tableLimit = Math.floor((mapHeight-205-80)/40)
+                ,cols = null;
+                $('#supervAssessC').find('.layui-form').addClass('hide');
+                if(self.tableType==='2'){
+                     //colspan即横跨的单元格数，这种情况下不用设置field和width
+                    cols = [[
+                        {align: 'center', title: '序号', rowspan:2,field:'id'}
+                        ,{align: 'center', title: '姓名', rowspan:2,field:'name'}
+                        ,{align: 'center', title: '公众评价', colspan:2} 
+                        ,{align: 'center', title: '微信事件上报', colspan:2}
+                        ,{align: 'center', title: '急速响应事件', colspan:2}
+                        ,{align: 'center', title: '定时作业签到数', colspan:2}
+                        ,{align: 'center', title: '仪容仪表', colspan:2}
+                        ,{align: 'center', title: '轨迹上传', colspan:2}
+                        ,{align: 'center', title: '总计', rowspan:2,field:'GG',sort:true}
+                      ], [
+                        {field: 'A1', title: '合格', width: 80}
+                        ,{field: 'A2', title: '不合格', width: 80}
+                        ,{field: 'B1', title: '合格', width: 80}
+                        ,{field: 'B2', title: '不合格', width: 80}
+                        ,{field: 'C1', title: '合格', width: 80}
+                        ,{field: 'C2', title: '不合格', width: 80}
+                        ,{field: 'D1', title: '合格', width: 80}
+                        ,{field: 'D2', title: '不合格', width: 80}
+                        ,{field: 'E1', title: '合格', width: 80}
+                        ,{field: 'E2', title: '不合格', width: 80}
+                        ,{field: 'F1', title: '合格', width: 80}
+                        ,{field: 'F2', title: '不合格', width: 80}
+                    ]]
+                }else if(self.tableType==='1'){
+                     $('#supervAssessC').find('.layui-form').removeClass('hide');
+                    cols =  [[ //标题栏
+                        { field: 'id', title: '序号', sort: true},
+                        { field: 'area', title: '区县'},
+                        { field: 'reach', title: '河段' },
+                        { field: 'date', title: '巡检时间', width:'210'  },
+                        { field: 'location', title: '巡检地点' },
+                        { field: 'department', title: '所在部门', width:'150'  },
+                        { field: 'office', title: '河长等级' },
+                        { field: 'person', title: '河长' },
+                        { field: 'check', title: '考核人员' },
+                        { field: 'phone', title: '联系方式' },
+                        { field: 'state', title: '状态' },
+                        { field: 'river', title: '河湖名称', sort: true, fixed: 'right'},
+                        { fixed: 'right', align: 'center', toolbar: '#supervAFormbar' }
+                    ]]
+                }
                 layui.use('table', function() {
                     var table = layui.table;
                     table.render({
                         elem: '#supervATable'
-                        ,cols: [
-                            [ //标题栏
-                                { field: 'id', title: '序号', sort: true},
-                                { field: 'area', title: '区县'},
-                                { field: 'reach', title: '河段' },
-                                { field: 'date', title: '巡检时间', width:'210'  },
-                                { field: 'location', title: '巡检地点' },
-                                { field: 'department', title: '所在部门', width:'150'  },
-                                { field: 'office', title: '河长等级' },
-                                { field: 'person', title: '河长' },
-                                { field: 'check', title: '考核人员' },
-                                { field: 'phone', title: '联系方式' },
-                                { field: 'state', title: '状态' },
-                                { field: 'river', title: '河湖名称', sort: true, fixed: 'right'},
-                                { fixed: 'right', align: 'center', toolbar: '#supervAFormbar' }
-                            ]
-                        ]
+                        ,cols: cols
                         ,cellMinWidth: '140'
-                        ,data: self.demoData
+                        ,data: self.demoData['table'+self.tableType]
                         ,unresize: true
                         ,page: {
                             theme: '#3cacff'
                         }
                         ,limit:tableLimit
                         ,id: 'supervATableReload'
-                    });
-                    var active = {
-                        reload: function() {
-                            var demoReload = $('#supervATableInputReload');
-                            //执行重载
-                            table.reload('supervATableReload', {
-                                page: {
-                                    curr: 1 //重新从第 1 页开始
-                                },
-                                where: {
-                                    key: {
-                                        id: demoReload.val()
-                                    }
-                                }
-                            });
-                        }
-                    };
-                    $('.demoTable .layui-btn').on('click', function() {
-                        var type = $(this).data('type');
-                        active[type] ? active[type].call(this) : '';
                     });
                 })
             },

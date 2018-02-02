@@ -205,7 +205,7 @@ define([
                             </div>
                         </div>
                         <div class="panel-body">
-                            水质 ：${feat['sz']||'良'}
+                            水质 ：${feat['szxz']||'良'}
                             <hr>
                             水质目标 ${feat['szmb']}
                         </div>

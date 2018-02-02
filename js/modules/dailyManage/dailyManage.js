@@ -107,7 +107,7 @@ define(["dojo/_base/declare",
                                     self.initData();
                                 },
                                 cancel: function(index, layero) {
-                                    console.log(layero);
+                                    // console.log(layero);
                                 },
                                 end: function() {
                                     self.addBoxIndex = -1;

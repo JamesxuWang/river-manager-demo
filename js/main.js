@@ -89,7 +89,7 @@ require([
 
     //菜单控制
     var moduleBegin = new layInit(map,config.layui);    /*layui初始化*/
-    moduleBegin.runMoudle('dailyManage');//运行第一个模块
+    moduleBegin.runMoudle('supervAssess');//运行第一个模块
 
 
     /*添加比例尺控件*/

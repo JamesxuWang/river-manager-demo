@@ -78,27 +78,27 @@ define(["dojo/_base/declare",
                 var self = this;
 
                 var data = [{ //节点数据
-                    name: '石井河'
+                    name: '泗纶镇段'
                     ,spread:true
                     ,children: [
-                    {name: '视频点a',alias: 'aa',id: '1'}
-                    ,{name: '视频点b',alias: 'bb',id: '2'}
-                    ,{name: '视频点c',alias: 'cc',id: '3'}
-                    ,{name: '视频点d',alias: 'dd',id: '4'}
+                    {name: '定点监控1',alias: 'aa',id: '1'}
+                    ,{name: '定点监控2',alias: 'bb',id: '2'}
+                    ,{name: '无人机巡查1',alias: 'cc',id: '3'}
+                    ,{name: '无人机巡查2',alias: 'dd',id: '4'}
                     ]
                   }, {
-                    name: '增埗河'
+                    name: '龙湾镇段'
                     ,children: [
-                    {name: '视频点a',alias: 'aa',id: '1'}
-                    ,{name: '视频点b',alias: 'bb',id: '2'}
-                    ,{name: '视频点c',alias: 'cc',id: '3'}
+                    {name: '定点监控1',alias: 'aa',id: '1'}
+                    ,{name: '定点监控2',alias: 'bb',id: '2'}
+                    ,{name: '无人机巡查1',alias: 'cc',id: '3'}
                     ]
                   }, {
-                    name: '西航道支线'
+                    name: '连州镇段'
                     ,children: [
-                    {name: '视频点a',alias: 'aa',id: '1'}
-                    ,{name: '视频点b',alias: 'bb',id: '2'}
-                    ,{name: '视频点c',alias: 'cc',id: '3'}
+                    {name: '定点监控1',alias: 'aa',id: '1'}
+                    ,{name: '定点监控2',alias: 'bb',id: '2'}
+                    ,{name: '无人机巡查1',alias: 'cc',id: '3'}
                     ]
                   }]
 
