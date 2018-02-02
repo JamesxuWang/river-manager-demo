@@ -103,39 +103,42 @@ define(["dojo/_base/declare",
                     var laydate = layui.laydate
                     var form = layui.form;
                     if (self.addBoxIndex !== -1) {
-                        // $('.river-content-name').html(name);
-                        $('#analyzeSumC').prev('.layui-layer-title').html(nodeName);
-                        self.initChart();
-                    } else {
-                        //本表单通过ajax加载 --以模板的形式，当然你也可以直接写在页面上读取
-                        $.get('./js/modules/analyzeSum/analyzeSumContent.html', null, function(divcont) {
-                            self.addBoxIndex = layer.open({
-                                type: 1,
-                                title: nodeName + '报表',
-                                content: divcont,
-                                btn: [],
-                                fixed: true,
-                                shade: false,
-                                offset: ['60px', '340px'],
-                                area: [mapWidth + 'px', mapHeight + 'px'],
-                                zIndex: 100,
-                                id: 'analyzeSumC',
-                                anim: 2,
-                                move: false,
-                                maxmin: false,
-                                success: function(layero, index) {
-                                    form.render();
-                                    self.initChart();
-                                },
-                                cancel: function(index, layero) {
-                                    console.log(layero);
-                                },
-                                end: function() {
-                                    self.addBoxIndex = -1;
-                                }
-                            });
-                        });
+                        $('#analyzeSumC').parent().remove();
+                        self.addBoxIndex = -1;
                     }
+                        //本表单通过ajax加载 --以模板的形式，当然你也可以直接写在页面上读取
+                    $.get('./js/modules/analyzeSum/analyzeSumContent.html', null, function(divcont) {
+                        self.addBoxIndex = layer.open({
+                            type: 1,
+                            title: nodeName + '报表',
+                            content: divcont,
+                            btn: [],
+                            fixed: true,
+                            shade: false,
+                            offset: ['60px', '340px'],
+                            area: [mapWidth + 'px', mapHeight + 'px'],
+                            zIndex: 100,
+                            id: 'analyzeSumC',
+                            anim: 2,
+                            move: false,
+                            maxmin: false,
+                            success: function(layero, index) {
+                                form.render();
+                                if(self.chartType!='obj7'){
+                                  self.initChart();
+                                }else{
+                                  self.initForm();
+                                }
+                            },
+                            cancel: function(index, layero) {
+                                console.log(layero);
+                            },
+                            end: function() {
+                                self.addBoxIndex = -1;
+                            }
+                        });
+                    });
+
                 })
 
             },
@@ -148,6 +151,36 @@ define(["dojo/_base/declare",
                 self.myChart = echarts.init(document.getElementById('echartsCanvas'));
                 var option = self.demoData[self.chartType];
                 self.myChart.setOption(option);
+            },
+            initForm: function() {
+                var self = this
+                ,mapHeight = $('.container').height()
+                ,tableLimit = Math.floor((mapHeight-45-80)/40)
+                ,cols = [[
+                  { field: 'id', title: '序号', sort: true},
+                  { field: 'name', title: '区县'},
+                  { field: 'area', title: '河段' },
+                  { field: 'fn', title: '巡检时间', width:'210'  },
+                  { field: 'type2014', title: '巡检地点' },
+                  { field: 'type2020', title: '所在部门', width:'150'  },
+                  { field: 'type2030', title: '河长等级' },
+                  { field: 'node', title: '河长' }
+                ]];
+                layui.use('table', function() {
+                    var table = layui.table;
+                    table.render({
+                        elem: '#analyzeTable'
+                        ,cols: cols
+                        ,cellMinWidth: '140'
+                        ,data: self.demoData['table3']
+                        ,unresize: true
+                        ,page: {
+                            theme: '#3cacff'
+                        }
+                        ,limit:tableLimit
+                        ,id: 'supervATableReload'
+                    });
+                })
             },
             bindEvent: function() {},
             close: function() {

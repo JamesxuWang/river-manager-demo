@@ -153,14 +153,14 @@ define(["dojo/_base/declare",
                      //colspan即横跨的单元格数，这种情况下不用设置field和width
                     cols = [[
                         {align: 'center', title: '序号', rowspan:2,field:'id'}
-                        ,{align: 'center', title: '姓名', rowspan:2,field:'name'}
-                        ,{align: 'center', title: '公众评价', colspan:2} 
+                        ,{align: 'center', title: '公众评价', colspan:2}
                         ,{align: 'center', title: '微信事件上报', colspan:2}
                         ,{align: 'center', title: '急速响应事件', colspan:2}
                         ,{align: 'center', title: '定时作业签到数', colspan:2}
                         ,{align: 'center', title: '仪容仪表', colspan:2}
                         ,{align: 'center', title: '轨迹上传', colspan:2}
                         ,{align: 'center', title: '总计', rowspan:2,field:'GG',sort:true}
+                        ,{align: 'center', title: '姓名', rowspan:2,field:'name', fixed: 'right'}
                       ], [
                         {field: 'A1', title: '合格', width: 80}
                         ,{field: 'A2', title: '不合格', width: 80}
