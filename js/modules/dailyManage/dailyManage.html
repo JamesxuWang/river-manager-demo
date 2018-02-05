@@ -4,10 +4,11 @@
         <div class="layui-inline" style="width: 80%">
           <label class="layui-form-label">信息分类：</label>
           <div class="layui-input-inline">
-            <span class="daily-search-type">全部 </span>
+            <span class="daily-search-type daily-search-active">全部 </span>
             <span class="daily-search-type">河湖新闻 <span class="layui-badge-rim">15</span></span>
             <span class="daily-search-type">通知公告 <span class="layui-badge-rim">23</span></span>
             <span class="daily-search-type">河长信箱 <span class="layui-badge-rim">31</span></span>
+            <span class="daily-search-type">消息列表 <span class="layui-badge-rim">31</span></span>
           </div>
         </div>
         <div class="layui-inline" style="width: 10%">
@@ -79,6 +80,16 @@
   background-color: #120d58;
   color: #fff;
 }
+.daily-wrap .daily-search .daily-search-active{
+  background-color: #fff;
+  color: #6665e5;
+  border-radius: 5px;
+}
+.daily-wrap .daily-search .daily-search-active .layui-badge-rim{
+  background-color: #120d58;
+  color: #fff;
+}
+
 .daily-wrap .daily-content{
   background-color: #f0f0f0;
     padding-bottom: 30px;

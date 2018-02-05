@@ -269,6 +269,7 @@ define([
                             title: '河流属性档案',
                             content: divCont,
                             btn: [],
+                            anim:3,
                             fixed:true,
                             shade: false,
                             offset: ['60px','340px'],

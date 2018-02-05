@@ -296,7 +296,7 @@ define(["dojo/_base/declare",
                             area: ['400px','560px'],
                             zIndex: 100,
                             id: 'workI',
-                            anim: 2,
+                            anim: 3,
                             maxmin: false,
                             success: function(layero, index) {
                                 form.render();

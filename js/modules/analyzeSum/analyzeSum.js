@@ -155,23 +155,23 @@ define(["dojo/_base/declare",
             initForm: function() {
                 var self = this
                 ,mapHeight = $('.container').height()
-                ,tableLimit = Math.floor((mapHeight-45-80)/40)
+                ,tableLimit = Math.floor((mapHeight-145-80)/40)
                 ,cols = [[
-                  { field: 'id', title: '序号', sort: true},
-                  { field: 'name', title: '区县'},
-                  { field: 'area', title: '河段' },
-                  { field: 'fn', title: '巡检时间', width:'210'  },
-                  { field: 'type2014', title: '巡检地点' },
-                  { field: 'type2020', title: '所在部门', width:'150'  },
-                  { field: 'type2030', title: '河长等级' },
-                  { field: 'node', title: '河长' }
+                  { field: 'id', title: '序号', sort: true, align:'center'},
+                  { field: 'name', title: '区县', width:'210'  },
+                  { field: 'area', title: '水体名称' },
+                  { field: 'fn', title: '水环境功能区', width:'210'  },
+                  { field: 'type2014', title: '2014水质现状' },
+                  { field: 'type2020', title: '2020水质目标', width:'150'  },
+                  { field: 'type2030', title: '2030水质目标' },
+                  { field: 'node', title: '备注' }
                 ]];
                 layui.use('table', function() {
                     var table = layui.table;
                     table.render({
                         elem: '#analyzeTable'
                         ,cols: cols
-                        ,cellMinWidth: '140'
+                        ,cellMinWidth: '120'
                         ,data: self.demoData['table3']
                         ,unresize: true
                         ,page: {
